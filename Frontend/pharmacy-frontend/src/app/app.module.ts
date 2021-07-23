@@ -11,12 +11,25 @@ import {MatInputModule} from '@angular/material/input';
 import { StateInputComponent } from './components/state-input/state-input/state-input.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
+import { PredefinedExaminationComponent } from './components/predefined-examination/predefined-examination/predefined-examination.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
+import { DrugComponent } from './components/drug/drug/drug.component';
+import {MatTableModule} from '@angular/material/table';
+import { MoreInfoDialogComponent } from './components/drug/more-info-dialog/more-info-dialog/more-info-dialog.component';
+import { PharmacistPharmacyAdminComponent } from './components/pharmacist-pharmacy-admin/pharmacist-pharmacy-admin/pharmacist-pharmacy-admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PharmacyProfileComponent,
-    StateInputComponent
+    StateInputComponent,
+    PredefinedExaminationComponent,
+    DrugComponent,
+    MoreInfoDialogComponent,
+    PharmacistPharmacyAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +41,16 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatAutocompleteModule,
     HttpClientModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatTableModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

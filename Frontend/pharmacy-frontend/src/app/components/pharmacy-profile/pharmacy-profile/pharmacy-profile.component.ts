@@ -17,8 +17,9 @@ export class PharmacyProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileInfoForm = this.fb.group({
       name: '',
-      address: '',
       description: '',
+      city: '',
+      address: '',
 
     })
     this.profileInfoForm.valueChanges.subscribe(console.log);

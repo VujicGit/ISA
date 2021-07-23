@@ -1,0 +1,40 @@
+<div class="component">
+    <div class="container">
+        <div class="form" [formGroup]="form">
+            <div class="row">
+                <mat-form-field class="form-field">
+                    <mat-label>Name</mat-label>
+                    <input matInput [value]="name" formControlName="name" readonly>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="form-field">
+                    <mat-label>Code</mat-label>
+                    <input matInput [value]="code" formControlName="code" readonly>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="form-field">
+                    <mat-label>Daily dose</mat-label>
+                    <input matInput [value]="dailyDose" formControlName="dailyDose" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="form-field">
+                    <mat-label>Manufacturer</mat-label>
+                    <input matInput [value]="manufacturer" formControlName="manufacturer" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="form-field">
+                    <mat-label>Manufacturer</mat-label>
+                    <textarea matInput formControlName="manufacturer" readonly>
+                        
+                    </textarea>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
