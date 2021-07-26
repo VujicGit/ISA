@@ -1,13 +1,13 @@
-package com.isa.application;
+package com.isa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class IsaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(IsaApplication.class, args);
 	}
 
 }
