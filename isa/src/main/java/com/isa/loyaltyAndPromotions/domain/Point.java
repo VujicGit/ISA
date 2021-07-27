@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {})})
 public class Point {
 
     @Id
