@@ -1,4 +1,4 @@
-package com.drug.domain.enums;
+package com.isa.drug.domain.enums;
 
 public enum DrugType {
     HERBAL,

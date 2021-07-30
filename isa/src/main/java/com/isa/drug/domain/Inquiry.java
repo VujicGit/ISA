@@ -1,22 +1,20 @@
-package com.drug.domain;
+package com.isa.drug.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-public class Allergy {
+public class Inquiry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String name;
+    private Date date;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Drug drug;
-
-    //TODO Add patient
-
 
     public Long getId() {
         return id;
@@ -26,12 +24,12 @@ public class Allergy {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Date getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Drug getDrug() {

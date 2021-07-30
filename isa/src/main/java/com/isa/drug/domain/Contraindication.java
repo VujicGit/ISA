@@ -1,4 +1,4 @@
-package com.drug.domain;
+package com.isa.drug.domain;
 
 import javax.persistence.*;
 

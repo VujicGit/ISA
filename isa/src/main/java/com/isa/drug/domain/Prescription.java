@@ -1,6 +1,4 @@
-package com.drug.domain;
-
-import org.springframework.data.repository.cdi.Eager;
+package com.isa.drug.domain;
 
 import javax.persistence.*;
 

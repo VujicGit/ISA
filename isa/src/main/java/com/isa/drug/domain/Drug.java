@@ -1,9 +1,9 @@
-package com.drug.domain;
+package com.isa.drug.domain;
 
-import com.drug.domain.enums.DrugClass;
-import com.drug.domain.enums.DrugForm;
-import com.drug.domain.enums.DrugType;
-import com.drug.domain.enums.PrescriptionType;
+import com.isa.drug.domain.enums.DrugClass;
+import com.isa.drug.domain.enums.DrugForm;
+import com.isa.drug.domain.enums.DrugType;
+import com.isa.drug.domain.enums.PrescriptionType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 

@@ -1,6 +1,6 @@
-package com.drug.domain;
+package com.isa.drug.domain;
 
-import com.drug.domain.enums.EPrescriptionStatus;
+import com.isa.drug.domain.enums.EPrescriptionStatus;
 
 import javax.persistence.*;
 import java.util.Date;
