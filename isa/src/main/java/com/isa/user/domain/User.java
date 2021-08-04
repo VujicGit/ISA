@@ -5,20 +5,44 @@ import com.isa.user.domain.enumeration.Role;
 
 import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String surname;
+
+    @Column
     private String identificationNumber;
+
+    @Column
     private String email;
+
+    @Column
     private String phone;
+
+    @Column
     private Gender gender;
+
+    @Column
     private String password;
+
+    @Column
     private boolean verified;
+
+    @Column
     private Role role;
+
+    @Column
     private boolean passwordChanged;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Address address;
 
     public User() {}

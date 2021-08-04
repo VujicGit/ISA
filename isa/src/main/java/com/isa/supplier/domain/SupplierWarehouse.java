@@ -2,10 +2,13 @@ package com.isa.supplier.domain;
 
 import javax.persistence.*;
 
+@Entity
 public class SupplierWarehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private int quantity;
 
     // add drug

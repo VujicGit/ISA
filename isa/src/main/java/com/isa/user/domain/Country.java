@@ -2,10 +2,13 @@ package com.isa.user.domain;
 
 import javax.persistence.*;
 
+@Entity
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String name;
 
     public Country() {}

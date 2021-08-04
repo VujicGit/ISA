@@ -1,19 +1,29 @@
 package com.isa.user.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
+@Entity
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String street;
+
+    @Column
     private String number;
-    private City city;
+
+    @OneToMany
+    private List<City> city;
+
+    @OneToOne
     private Location location;
 
     public Address() {}
 
-    public Address(Long id, String street, String number, City city, Location location) {
+    public Address(Long id, String street, String number, List<City> city, Location location) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -45,11 +55,11 @@ public class Address {
         this.number = number;
     }
 
-    public City getCity() {
+    public List<City> getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(List<City> city) {
         this.city = city;
     }
 

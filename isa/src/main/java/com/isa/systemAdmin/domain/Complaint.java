@@ -7,16 +7,32 @@ import com.isa.user.domain.Pharmacist;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Complaint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private Date date;
+
+    @Column
     private String text;
+
+    @Column
     private boolean answered;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Patient patient;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Pharmacist pharmacist;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Dermatologist dermatologist;
+
+    @OneToOne
+    private ComplaintResponse response;
     //add Pharmacy
 
 

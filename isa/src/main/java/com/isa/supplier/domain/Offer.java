@@ -6,15 +6,27 @@ import com.isa.user.domain.Supplier;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private OfferStatus status;
+
+    @Column
     private double price;
+
+    @Column
     private Date date;
+
+    @Column
     private Date dueDate;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Order order;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Supplier supplier;
 
     public Offer() {}

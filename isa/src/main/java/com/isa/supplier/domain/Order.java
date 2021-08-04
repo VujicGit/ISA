@@ -6,27 +6,42 @@ import com.isa.user.domain.PharmacyAdministrator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
+@Entity
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private Date creationDate;
+
+    @Column
     private Date dueDate;
+
+    @Column
     private OrderStatus status;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private PharmacyAdministrator pharmacyAdministrator;
-    private OrderedDrug orderedDrug;
-    // add offers
+
+    @OneToMany
+    private List<OrderedDrug> orderedDrug;
+
+    @OneToMany
+    private List<Offer> offers;
 
     public Order() {}
 
-    public Order(Long id, Date creationDate, Date dueDate, OrderStatus status, PharmacyAdministrator pharmacyAdministrator, OrderedDrug orderedDrug) {
+    public Order(Long id, Date creationDate, Date dueDate, OrderStatus status, PharmacyAdministrator pharmacyAdministrator, List<OrderedDrug> orderedDrug, List<Offer> offers) {
         this.id = id;
         this.creationDate = creationDate;
         this.dueDate = dueDate;
         this.status = status;
         this.pharmacyAdministrator = pharmacyAdministrator;
         this.orderedDrug = orderedDrug;
+        this.offers = offers;
     }
 
     public Long getId() {
@@ -69,11 +84,19 @@ public class Order {
         this.pharmacyAdministrator = pharmacyAdministrator;
     }
 
-    public OrderedDrug getOrderedDrug() {
+    public List<OrderedDrug> getOrderedDrug() {
         return orderedDrug;
     }
 
-    public void setOrderedDrug(OrderedDrug orderedDrug) {
+    public void setOrderedDrug(List<OrderedDrug> orderedDrug) {
         this.orderedDrug = orderedDrug;
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
 }

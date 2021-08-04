@@ -3,12 +3,19 @@ package com.isa.systemAdmin.domain;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class ComplaintResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private Date date;
+
+    @Column
     private String text;
+
+    @OneToOne
     private Complaint complaint;
 
 

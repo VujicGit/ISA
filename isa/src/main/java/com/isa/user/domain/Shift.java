@@ -2,6 +2,7 @@ package com.isa.user.domain;
 
 import javax.persistence.*;
 
+@Entity
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

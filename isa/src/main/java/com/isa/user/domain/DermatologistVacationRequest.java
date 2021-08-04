@@ -5,13 +5,22 @@ import com.isa.user.domain.enumeration.VacationRequestStatus;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class DermatologistVacationRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private Date date;
+
+    @Column
     private String adminResponse;
+
+    @Column
     private VacationRequestStatus status;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Dermatologist dermatologist;
 
     // add time period, pharmacy

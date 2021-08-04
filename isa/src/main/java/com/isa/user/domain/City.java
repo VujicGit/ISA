@@ -2,12 +2,19 @@ package com.isa.user.domain;
 
 import javax.persistence.*;
 
+@Entity
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String zipCode;
+
+    @Column
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Country country;
 
     public City() {}

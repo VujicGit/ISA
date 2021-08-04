@@ -2,11 +2,16 @@ package com.isa.user.domain;
 
 import javax.persistence.*;
 
+@Entity
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private double latitude;
+
+    @Column
     private double longitude;
 
     public Location() {}
