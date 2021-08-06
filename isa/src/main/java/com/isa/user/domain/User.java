@@ -6,10 +6,11 @@ import com.isa.user.domain.enumeration.Role;
 import javax.persistence.*;
 
 @Entity
+@Table(name="users")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     @Column
