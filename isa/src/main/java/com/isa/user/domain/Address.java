@@ -15,15 +15,15 @@ public class Address {
     @Column
     private String number;
 
-    @OneToMany
-    private List<City> city;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    private City city;
 
     @OneToOne
     private Location location;
 
     public Address() {}
 
-    public Address(Long id, String street, String number, List<City> city, Location location) {
+    public Address(Long id, String street, String number, City city, Location location) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -55,11 +55,11 @@ public class Address {
         this.number = number;
     }
 
-    public List<City> getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(List<City> city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
