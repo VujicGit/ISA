@@ -68,4 +68,12 @@ public class AppointmentReport {
     public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
     }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
+
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
+    }
 }

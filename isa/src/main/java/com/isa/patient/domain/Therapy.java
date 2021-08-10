@@ -70,4 +70,6 @@ public class Therapy {
     public void setDrugs(List<Drug> drugs) {
         this.drugs = drugs;
     }
+
+
 }
