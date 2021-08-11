@@ -2,6 +2,8 @@ package com.isa.appointment.domain;
 
 import com.isa.appointment.domain.enums.AppointmentStatus;
 import com.isa.appointment.domain.enums.AppointmentType;
+import com.isa.drug.domain.Allergy;
+import com.isa.patient.domain.Therapy;
 
 import javax.persistence.*;
 
@@ -22,6 +24,9 @@ public class Appointment {
 
     @Column
     private AppointmentStatus status;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Therapy threapy;
 
     @Embedded
     @AttributeOverrides({
@@ -65,4 +70,8 @@ public class Appointment {
     public void setStatus(AppointmentStatus status) {
         this.status = status;
     }
+
+    public Therapy getThreapy() { return threapy; }
+
+    public void setThreapy(Therapy threapy) { this.threapy = threapy; }
 }
