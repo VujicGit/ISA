@@ -6,7 +6,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value = Role.Values.DERMATOLOGIST)
 public class Dermatologist extends Employee{
 
     public Dermatologist() {}

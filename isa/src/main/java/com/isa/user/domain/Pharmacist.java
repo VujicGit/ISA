@@ -7,7 +7,6 @@ import com.isa.user.domain.enumeration.Role;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue(value = Role.Values.PHARMACIST)
 public class Pharmacist extends Employee{
 
 

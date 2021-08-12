@@ -30,7 +30,7 @@ public class Pharmacy {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Dermatologist> dermatologists;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {})
     private Address address;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

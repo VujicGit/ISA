@@ -7,7 +7,6 @@ import com.isa.user.domain.enumeration.Role;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue(value = Role.Values.PATIENT)
 public class Patient extends User{
 
     @Column
