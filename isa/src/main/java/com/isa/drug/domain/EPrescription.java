@@ -1,6 +1,7 @@
 package com.isa.drug.domain;
 
 import com.isa.drug.domain.enums.EPrescriptionStatus;
+import com.isa.user.domain.Patient;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,7 +26,20 @@ public class EPrescription {
     @OneToMany
     private List<Prescription> prescription;
 
-    //TODO Add patient
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Patient patient;
+
+    public EPrescription() {
+    }
+
+    public EPrescription(Long id, String code, Date date, EPrescriptionStatus status, List<Prescription> prescription, Patient patient) {
+        this.id = id;
+        this.code = code;
+        this.date = date;
+        this.status = status;
+        this.prescription = prescription;
+        this.patient = patient;
+    }
 
     public Long getId() {
         return id;
@@ -65,5 +79,13 @@ public class EPrescription {
 
     public void setPrescription(List<Prescription> prescription) {
         this.prescription = prescription;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }

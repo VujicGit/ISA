@@ -89,6 +89,32 @@ public class Drug {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Drug> substituteDrugs;
 
+    public Drug() {
+    }
+
+    public Drug(Long id, String code, String composition, String manufacturer, String note, DrugForm form,
+                PrescriptionType prescriptionType, DrugType type, DrugClass drugClass, String dailyDose, String name,
+                Integer loyaltyPoints, Allergy allergy, Price price, com.isa.pharmacy.domain.Item item,
+                List<Ingredient> ingredients, List<Contraindication> contraindications, List<Drug> substituteDrugs) {
+        this.id = id;
+        this.code = code;
+        this.composition = composition;
+        this.manufacturer = manufacturer;
+        this.note = note;
+        this.form = form;
+        this.prescriptionType = prescriptionType;
+        this.type = type;
+        this.drugClass = drugClass;
+        this.dailyDose = dailyDose;
+        this.name = name;
+        this.loyaltyPoints = loyaltyPoints;
+        this.allergy = allergy;
+        this.price = price;
+        Item = item;
+        this.ingredients = ingredients;
+        this.contraindications = contraindications;
+        this.substituteDrugs = substituteDrugs;
+    }
 
     public Long getId() {
         return id;
@@ -208,6 +234,22 @@ public class Drug {
 
     public void setContraindications(List<Contraindication> contraindications) {
         this.contraindications = contraindications;
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
+    }
+
+    public com.isa.pharmacy.domain.Item getItem() {
+        return Item;
+    }
+
+    public void setItem(com.isa.pharmacy.domain.Item item) {
+        Item = item;
     }
 
     public List<Drug> getSubstituteDrugs() {

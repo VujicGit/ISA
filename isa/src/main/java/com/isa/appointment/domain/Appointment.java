@@ -4,6 +4,9 @@ import com.isa.appointment.domain.enums.AppointmentStatus;
 import com.isa.appointment.domain.enums.AppointmentType;
 import com.isa.drug.domain.Allergy;
 import com.isa.patient.domain.Therapy;
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.user.domain.Patient;
+import com.isa.user.domain.Pharmacist;
 
 import javax.persistence.*;
 
@@ -26,7 +29,7 @@ public class Appointment {
     private AppointmentStatus status;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Therapy threapy;
+    private Therapy therapy;
 
     @Embedded
     @AttributeOverrides({
@@ -35,9 +38,25 @@ public class Appointment {
     })
     private TimePeriod appointmentPeriod;
 
-    //TODO Add patient
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Patient patient;
 
-    //TODO Add pharmacy
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Pharmacy pharmacy;
+
+    public Appointment() {
+    }
+
+    public Appointment(Long id, Double cost, AppointmentType type, AppointmentStatus status, Therapy therapy, TimePeriod appointmentPeriod, Patient patient, Pharmacy pharmacy) {
+        this.id = id;
+        this.cost = cost;
+        this.type = type;
+        this.status = status;
+        this.therapy = therapy;
+        this.appointmentPeriod = appointmentPeriod;
+        this.patient = patient;
+        this.pharmacy = pharmacy;
+    }
 
     public Long getId() {
         return id;
@@ -71,7 +90,35 @@ public class Appointment {
         this.status = status;
     }
 
-    public Therapy getThreapy() { return threapy; }
+    public Therapy getTherapy() {
+        return therapy;
+    }
 
-    public void setThreapy(Therapy threapy) { this.threapy = threapy; }
+    public void setTherapy(Therapy therapy) {
+        this.therapy = therapy;
+    }
+
+    public TimePeriod getAppointmentPeriod() {
+        return appointmentPeriod;
+    }
+
+    public void setAppointmentPeriod(TimePeriod appointmentPeriod) {
+        this.appointmentPeriod = appointmentPeriod;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+    }
 }

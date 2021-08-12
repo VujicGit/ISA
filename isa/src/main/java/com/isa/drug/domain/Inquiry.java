@@ -16,6 +16,15 @@ public class Inquiry {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Drug drug;
 
+    public Inquiry() {
+    }
+
+    public Inquiry(Long id, Date date, Drug drug) {
+        this.id = id;
+        this.date = date;
+        this.drug = drug;
+    }
+
     public Long getId() {
         return id;
     }

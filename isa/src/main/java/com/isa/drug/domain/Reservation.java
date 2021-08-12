@@ -1,6 +1,7 @@
 package com.isa.drug.domain;
 
 import com.isa.drug.domain.enums.ReservationStatus;
+import com.isa.user.domain.Patient;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +12,9 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    private Integer uniqueId;
 
     @Column
     private Date date;
@@ -27,8 +31,22 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Drug drug;
 
-    //TODO Add patient
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Patient patient;
 
+    public Reservation() {
+    }
+
+    public Reservation(Long id, Integer uniqueId, Date date, ReservationStatus status, Integer quantity, Date dueDate, Drug drug, Patient patient) {
+        this.id = id;
+        this.uniqueId = uniqueId;
+        this.date = date;
+        this.status = status;
+        this.quantity = quantity;
+        this.dueDate = dueDate;
+        this.drug = drug;
+        this.patient = patient;
+    }
 
     public Long getId() {
         return id;
@@ -38,12 +56,24 @@ public class Reservation {
         this.id = id;
     }
 
+    public void setUniqueId(Integer uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public ReservationStatus getStatus() {

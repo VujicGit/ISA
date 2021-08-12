@@ -1,5 +1,7 @@
 package com.isa.drug.domain;
 
+import com.isa.user.domain.Patient;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,8 +17,18 @@ public class Allergy {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Drug drug;
 
-    //TODO Add patient
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Patient patient;
 
+    public Allergy() {
+    }
+
+    public Allergy(Long id, String name, Drug drug, Patient patient) {
+        this.id = id;
+        this.name = name;
+        this.drug = drug;
+        this.patient = patient;
+    }
 
     public Long getId() {
         return id;
@@ -40,5 +52,13 @@ public class Allergy {
 
     public void setDrug(Drug drug) {
         this.drug = drug;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }
