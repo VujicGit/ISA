@@ -18,14 +18,11 @@ public class Address {
     @Column
     private String number;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
     private City city;
 
     @OneToOne
     private Location location;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Pharmacy pharmacy;
 
     public Address() {}
 
@@ -77,7 +74,4 @@ public class Address {
         this.location = location;
     }
 
-    public Pharmacy getPharmacy() { return pharmacy; }
-
-    public void setPharmacy(Pharmacy pharmacy) { this.pharmacy = pharmacy; }
 }

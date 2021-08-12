@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue(value = Role.Values.SUPPLIER)
 public class Supplier extends User {
 
     @OneToMany
