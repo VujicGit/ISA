@@ -1,9 +1,12 @@
 package com.isa.drug.domain;
 
+import com.isa.appointment.domain.Appointment;
 import com.isa.drug.domain.enums.DrugClass;
 import com.isa.drug.domain.enums.DrugForm;
 import com.isa.drug.domain.enums.DrugType;
 import com.isa.drug.domain.enums.PrescriptionType;
+import com.isa.pharmacy.domain.Item;
+import com.isa.pharmacy.domain.Price;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -52,6 +55,12 @@ public class Drug {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Allergy allergy;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Price price;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private com.isa.pharmacy.domain.Item Item;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(

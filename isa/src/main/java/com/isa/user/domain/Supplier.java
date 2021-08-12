@@ -1,0 +1,21 @@
+package com.isa.user.domain;
+
+import com.isa.supplier.domain.Offer;
+import com.isa.supplier.domain.SupplierWarehouse;
+import com.isa.user.domain.enumeration.Role;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@DiscriminatorValue(value = Role.Values.SUPPLIER)
+public class Supplier extends User {
+
+    @OneToMany
+    private List<Offer> offers;
+
+    @OneToOne
+    private SupplierWarehouse warehouse;
+
+    public Supplier() {}
+}
