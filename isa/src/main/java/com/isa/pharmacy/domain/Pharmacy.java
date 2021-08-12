@@ -5,6 +5,7 @@ import com.isa.appointment.domain.Appointment;
 import com.isa.drug.domain.Drug;
 import com.isa.user.domain.Address;
 import com.isa.user.domain.Dermatologist;
+import com.isa.user.domain.Pharmacist;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -29,6 +30,9 @@ public class Pharmacy {
     )
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Dermatologist> dermatologists;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pharmacy")
+    private List<Pharmacist> pharmacists;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {})
     private Address address;

@@ -28,13 +28,21 @@ public class DermatologistService implements IDermatologistService {
 
     @Override
     public List<Dermatologist> findAllWithPharmacies() {
-        return dermatologistRepository.findallWithPharmacies();
+        return dermatologistRepository.findAllWithPharmacies();
     }
 
     @Override
     public List<Dermatologist> filter(String name, String surname, Long id, double minGrade, double maxGrade) {
         name = name.toLowerCase();
         surname = surname.toLowerCase();
+        name = name.trim();
+        surname = surname.trim();
+        if (name.equals("")) {
+            name = "%";
+        }
+        if (surname.equals("")) {
+            surname = "%";
+        }
         return dermatologistRepository.filterByPharmaciesAndGrade(name, surname, id, minGrade, maxGrade);
     }
 

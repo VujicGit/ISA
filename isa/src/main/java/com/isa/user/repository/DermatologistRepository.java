@@ -12,7 +12,7 @@ public interface DermatologistRepository extends JpaRepository<Dermatologist, Lo
     List<Dermatologist> findAllWithAddress();
 
     @Query(value = "select d from Dermatologist d join fetch d.pharmacies")
-    List<Dermatologist> findallWithPharmacies();
+    List<Dermatologist> findAllWithPharmacies();
 
     @Query(value = "select d from Dermatologist d join fetch d.pharmacies p where lower(d.name) like ?1 and lower(d.surname) like ?2")
     List<Dermatologist> search(String name, String surname);
