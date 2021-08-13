@@ -24,10 +24,10 @@ public class Offer {
     @Column
     private Date dueDate;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
     private Order order;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
     private Supplier supplier;
 
     public Offer() {}

@@ -14,10 +14,7 @@ public class Item {
     @Column
     private int quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Warehouse warehouse;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     private Drug drug;
 
     public Item(){}
@@ -38,13 +35,6 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public Drug getDrug() {
         return drug;

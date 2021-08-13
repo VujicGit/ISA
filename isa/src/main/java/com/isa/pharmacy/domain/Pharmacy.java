@@ -34,13 +34,13 @@ public class Pharmacy {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pharmacy")
     private List<Pharmacist> pharmacists;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = {})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {})
     private Address address;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Warehouse warehouse;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private PriceList priceList;
 
 

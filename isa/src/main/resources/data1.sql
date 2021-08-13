@@ -27,3 +27,10 @@ insert into pharmacist (id, pharmacy_id, grade) values (2, 1, 8.2);
 
 
 insert into pharmacys_dermatolostist (pharmacy_id, dermatologist_id) values (1, 1);
+
+insert into ingredient (name) values ('ibuprofen');
+
+insert into drug (code, composition, contraindications, daily_dose, drug_class, form, loyalty_points, manufacturer, name, note, prescription_type, type)
+    values ('M01AE01', 'Sastav 1', 'Brufen is contraindicated in patients with hypersensitivity to the active substance or to any of the excipients.', 'Two times a day', 3, 7, 4, 'Hemofarm', 'Brufen', 'Note 1', 1, 3);
+
+insert into drug_ingredient (drug_id, ingredient_id) values (1, 1);

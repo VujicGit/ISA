@@ -13,4 +13,5 @@ public class Contraindication {
     private String type;
 
 
+
 }

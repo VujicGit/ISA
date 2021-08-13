@@ -1,6 +1,7 @@
 package com.isa.pharmacy.domain;
 
 import com.isa.appointment.domain.Appointment;
+import com.isa.appointment.domain.TimePeriod;
 import com.isa.drug.domain.Drug;
 import com.isa.patient.domain.AppointmentReport;
 
@@ -16,15 +17,22 @@ public class Price {
     @Column
     private Double price;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private PriceList priceList;
-
-    //TimePeriod
+    @AttributeOverrides({
+            @AttributeOverride( name = "start", column = @Column(name = "priceStartTime")),
+            @AttributeOverride( name = "end", column = @Column(name = "priceEndTime"))
+    })
+    TimePeriod priceTime;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Drug drug;
 
-    public Price(){}
+    public Price(Double price, Drug drug){
+        this.price = price;
+
+        this.drug = drug;
+    }
+
+    public Price() {}
 
     public Long getId() {
         return id;
@@ -42,14 +50,6 @@ public class Price {
         this.price = price;
     }
 
-    public PriceList getPriceList() {
-        return priceList;
-    }
-
-    public void setPriceList(PriceList priceList) {
-        this.priceList = priceList;
-    }
-
     public Drug getDrug() {
         return drug;
     }
@@ -58,5 +58,11 @@ public class Price {
         this.drug = drug;
     }
 
+    public TimePeriod getPriceTime() {
+        return priceTime;
+    }
 
+    public void setPriceTime(TimePeriod priceTime) {
+        this.priceTime = priceTime;
+    }
 }

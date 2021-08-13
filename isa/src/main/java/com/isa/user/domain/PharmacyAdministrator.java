@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class PharmacyAdministrator extends User {
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Pharmacy pharmacy;
 
     public PharmacyAdministrator() {}

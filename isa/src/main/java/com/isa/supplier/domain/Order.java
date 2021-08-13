@@ -24,13 +24,13 @@ public class Order {
     @Column
     private OrderStatus status;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
     private PharmacyAdministrator pharmacyAdministrator;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<OrderedDrug> orderedDrug;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Offer> offers;
 
     public Order() {}

@@ -1,17 +1,15 @@
 package com.isa.drug.domain;
 
-import com.isa.appointment.domain.Appointment;
 import com.isa.drug.domain.enums.DrugClass;
 import com.isa.drug.domain.enums.DrugForm;
 import com.isa.drug.domain.enums.DrugType;
 import com.isa.drug.domain.enums.PrescriptionType;
-import com.isa.pharmacy.domain.Item;
-import com.isa.pharmacy.domain.Price;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Drug {
@@ -53,42 +51,49 @@ public class Drug {
     @Column
     private Integer loyaltyPoints;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Allergy allergy;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Price price;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private com.isa.pharmacy.domain.Item Item;
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "drug_ingredient",
             joinColumns = @JoinColumn(name = "drug_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id")
     )
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<Ingredient> ingredients;
+    private Set<Ingredient> ingredients;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "drug_contraindication",
-            joinColumns = @JoinColumn(name = "drug_id"),
-            inverseJoinColumns = @JoinColumn(name = "contraindication_id")
-    )
-    @Fetch(value = FetchMode.SUBSELECT)
-    private List<Contraindication> contraindications;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private String contraindications;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
             name = "substitute_drugs",
             joinColumns = @JoinColumn(name = "drug_id"),
             inverseJoinColumns = @JoinColumn(name = "substitute_id")
     )
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<Drug> substituteDrugs;
+    private Set<Drug> substituteDrugs;
 
+    public Drug(Long id, String code, String composition, String manufacturer, String note, DrugForm form, PrescriptionType prescriptionType, DrugType type, DrugClass drugClass, String dailyDose, String name, Integer loyaltyPoints, Set<Ingredient> ingredients, String contraindications, Set<Drug> substituteDrugs) {
+        this.id = id;
+        this.code = code;
+        this.composition = composition;
+        this.manufacturer = manufacturer;
+        this.note = note;
+        this.form = form;
+        this.prescriptionType = prescriptionType;
+        this.type = type;
+        this.drugClass = drugClass;
+        this.dailyDose = dailyDose;
+        this.name = name;
+        this.loyaltyPoints = loyaltyPoints;
+        this.ingredients = ingredients;
+        this.contraindications = contraindications;
+        this.substituteDrugs = substituteDrugs;
+    }
+
+    public Drug() {
+
+    }
 
     public Long getId() {
         return id;
@@ -186,35 +191,27 @@ public class Drug {
         this.loyaltyPoints = loyaltyPoints;
     }
 
-    public Allergy getAllergy() {
-        return allergy;
-    }
-
-    public void setAllergy(Allergy allergy) {
-        this.allergy = allergy;
-    }
-
-    public List<Ingredient> getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public List<Contraindication> getContraindications() {
+    public String getContraindications() {
         return contraindications;
     }
 
-    public void setContraindications(List<Contraindication> contraindications) {
+    public void setContraindications(String contraindications) {
         this.contraindications = contraindications;
     }
 
-    public List<Drug> getSubstituteDrugs() {
+    public Set<Drug> getSubstituteDrugs() {
         return substituteDrugs;
     }
 
-    public void setSubstituteDrugs(List<Drug> substituteDrugs) {
+    public void setSubstituteDrugs(Set<Drug> substituteDrugs) {
         this.substituteDrugs = substituteDrugs;
     }
 }
