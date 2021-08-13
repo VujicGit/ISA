@@ -6,7 +6,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value = Role.Values.SYSTEM_ADMINISTRATOR)
 public class SystemAdministrator extends User{
 
     public SystemAdministrator() {}

@@ -6,7 +6,6 @@ import com.isa.user.domain.enumeration.Role;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue(value = Role.Values.PHARMACY_ADMINISTRATOR)
 public class PharmacyAdministrator extends User {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
