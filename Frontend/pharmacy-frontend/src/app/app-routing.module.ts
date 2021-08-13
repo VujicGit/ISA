@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DermatologistHomepageComponent } from './dermatologist_homepage/dermatologist-homepage.component';
 import { CalendarComponent } from './calendar/calendar/calendar.component';
+import { DermatologistReportComponent } from './dermatologist-report/dermatologist-report.component';
 
 const routes: Routes = [
 
-  {  path: 'dermatologist_profile', component: DermatologistHomepageComponent,
+  {  path: 'derm-homepage', component: DermatologistHomepageComponent,
  
   children:[
     {path: 'derm-calendar', component: CalendarComponent},
+    {path: 'derm-report', component: DermatologistReportComponent},
   ],
   }
 
