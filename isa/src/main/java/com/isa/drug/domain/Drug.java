@@ -8,7 +8,6 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -62,6 +61,7 @@ public class Drug {
     private Set<Ingredient> ingredients;
 
 
+
     private String contraindications;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -94,6 +94,7 @@ public class Drug {
     public Drug() {
 
     }
+
 
     public Long getId() {
         return id;

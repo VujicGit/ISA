@@ -13,7 +13,7 @@ public class Allergy {
     @Column
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Drug drug;
 
 

@@ -21,7 +21,7 @@ public class DrugService implements IDrugService {
 
     @Override
     public List<Drug> findAll() {
-        return drugRepository.findAll();
+        return drugRepository.findAllWithIngredients();
     }
 
     @Override

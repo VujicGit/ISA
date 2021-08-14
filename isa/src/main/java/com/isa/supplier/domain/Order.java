@@ -1,8 +1,11 @@
 package com.isa.supplier.domain;
 
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.supplier.domain.enumeration.OrderStatus;
 import com.isa.user.domain.Pharmacist;
 import com.isa.user.domain.PharmacyAdministrator;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,24 +28,30 @@ public class Order {
     private OrderStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @Fetch(FetchMode.JOIN)
     private PharmacyAdministrator pharmacyAdministrator;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+    @Fetch(FetchMode.JOIN)
     private List<OrderedDrug> orderedDrug;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Offer> offers;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
+    private Pharmacy pharmacy;
+
     public Order() {}
 
-    public Order(Long id, Date creationDate, Date dueDate, OrderStatus status, PharmacyAdministrator pharmacyAdministrator, List<OrderedDrug> orderedDrug, List<Offer> offers) {
-        this.id = id;
+    public Order(Date creationDate, Date dueDate, OrderStatus status, PharmacyAdministrator pharmacyAdministrator, List<OrderedDrug> orderedDrug, List<Offer> offers, Pharmacy pharmacy) {
         this.creationDate = creationDate;
         this.dueDate = dueDate;
         this.status = status;
         this.pharmacyAdministrator = pharmacyAdministrator;
         this.orderedDrug = orderedDrug;
         this.offers = offers;
+        this.pharmacy = pharmacy;
     }
 
     public Long getId() {
@@ -99,5 +108,13 @@ public class Order {
 
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
+    }
+
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
 }

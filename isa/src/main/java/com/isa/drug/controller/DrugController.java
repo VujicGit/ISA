@@ -28,7 +28,8 @@ public class DrugController {
 
     @GetMapping
     public ResponseEntity<?> findAll() {
-        List<DrugIdDto> drugIdDtos = drugMapper.mapDrugsToDrugIdDtos(drugService.findAll());
-        return new ResponseEntity<>(drugIdDtos, HttpStatus.OK);
+        //List<DrugIdDto> drugIdDtos = drugMapper.mapDrugsToDrugIdDtos(drugService.findAll());
+        List<Drug> drugs = drugService.findAll();
+        return new ResponseEntity<>(drugs, HttpStatus.OK);
     }
 }

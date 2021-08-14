@@ -10,4 +10,6 @@ import java.util.Set;
 
 public interface DrugRepository extends JpaRepository<Drug, Long> {
 
+    @Query(value = "select d from Drug d join fetch d.ingredients left join fetch d.substituteDrugs")
+    List<Drug> findAllWithIngredients();
 }
