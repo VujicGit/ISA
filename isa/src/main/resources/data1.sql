@@ -51,3 +51,5 @@ insert into item (quantity, drug_id) values (100, 1);
 insert into warehouse (pharmacy_id) values (1);
 
 insert into warehouse_items (warehouse_id, items_id) values (1, 1);
+
+insert into pricelist (pharmacy_id) values (1);

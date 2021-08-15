@@ -6,18 +6,26 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class PriceList {
+public class Pricelist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Price> prices;
 
-    public PriceList(){}
+    @OneToOne(fetch = FetchType.LAZY)
+    private Pharmacy pharmacy;
 
-    public PriceList(List<Price> prices) {
+    public Pricelist(){}
+
+    public Pricelist(List<Price> prices, Pharmacy pharmacy) {
+        this.prices = prices;
+        this.pharmacy = pharmacy;
+    }
+
+    public Pricelist(List<Price> prices) {
         this.prices = prices;
     }
 
@@ -35,5 +43,13 @@ public class PriceList {
 
     public void setPrices(List<Price> prices) {
         this.prices = prices;
+    }
+
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
 }

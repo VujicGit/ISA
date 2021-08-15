@@ -1,10 +1,6 @@
 package com.isa.user.domain;
 
-import com.isa.pharmacy.domain.Pharmacy;
-import com.isa.pharmacy.domain.PriceList;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Address {
