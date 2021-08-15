@@ -1,17 +1,25 @@
 package com.isa.supplier.dto;
 
+import com.isa.supplier.validator.dueDate.DueDateValidation;
+import org.apache.tomcat.jni.Local;
+
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class CreateOrderDto {
 
     private List<CreateOrderedDrugDto> orderedDrugs;
-    private Date dueDate;
+
+    @DueDateValidation
+    @NotNull(message = "Due date can not be null")
+    private LocalDate dueDate;
 
     public CreateOrderDto() {
     }
 
-    public CreateOrderDto(List<CreateOrderedDrugDto> orderedDrugs, Date dueDate) {
+    public CreateOrderDto(List<CreateOrderedDrugDto> orderedDrugs, LocalDate dueDate) {
         this.orderedDrugs = orderedDrugs;
         this.dueDate = dueDate;
     }
@@ -20,7 +28,7 @@ public class CreateOrderDto {
         return orderedDrugs;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
@@ -28,7 +36,7 @@ public class CreateOrderDto {
         this.orderedDrugs = orderedDrugs;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 }

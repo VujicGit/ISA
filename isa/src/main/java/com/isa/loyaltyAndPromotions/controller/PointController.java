@@ -20,11 +20,11 @@ public class PointController {
 
 
     private final PointService pointService;
-    private final ErrorMapper errorMapper;
+
     @Autowired
-    public PointController(PointService pointService, ErrorMapper errorMapper) {
+    public PointController(PointService pointService) {
         this.pointService = pointService;
-        this.errorMapper = errorMapper;
+
     }
 
 
@@ -32,7 +32,7 @@ public class PointController {
     public ResponseEntity<?> save(@Valid @RequestBody PointDto dto, BindingResult result) {
 
         if(result.hasErrors()) {
-            return new ResponseEntity<>(errorMapper.Map(result.getAllErrors()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(ErrorMapper.Map(result.getAllErrors()), HttpStatus.BAD_REQUEST);
         }
 
 

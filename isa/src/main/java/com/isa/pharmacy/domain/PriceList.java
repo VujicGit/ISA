@@ -15,8 +15,6 @@ public class PriceList {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Price> prices;
 
-
-
     public PriceList(){}
 
     public PriceList(List<Price> prices) {

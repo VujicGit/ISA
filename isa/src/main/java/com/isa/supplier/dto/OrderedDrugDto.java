@@ -1,5 +1,7 @@
 package com.isa.supplier.dto;
 
+import com.isa.supplier.domain.OrderedDrug;
+
 public class OrderedDrugDto {
 
     private String name;
@@ -7,6 +9,12 @@ public class OrderedDrugDto {
     private int quantity;
 
     public OrderedDrugDto() {
+    }
+
+    public OrderedDrugDto(OrderedDrug orderedDrug) {
+        this.name = orderedDrug.getDrug().getName();
+        this.code = orderedDrug.getDrug().getCode();
+        this.quantity = orderedDrug.getQuantity();
     }
 
     public OrderedDrugDto(String name, String code, int quantity) {

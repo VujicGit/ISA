@@ -7,20 +7,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Component
 public class DermatologistMapper {
-    public List<SearchDermatologistDto> mapDermatologistsToDermatologistDtos(List<Dermatologist> dermatologists) {
-        List<SearchDermatologistDto> retVal = new ArrayList<>();
-        for(Dermatologist it : dermatologists) {
-            List<String> pharmacies = new ArrayList<>();
-            for (Pharmacy pharmacyIt : it.getPharmacies()) {
-                pharmacies.add(pharmacyIt.getDescription());
-            }
-            SearchDermatologistDto searchDermatologistDto = new SearchDermatologistDto(it.getName(), it.getSurname(), pharmacies, it.getGrade());
-            retVal.add(searchDermatologistDto);
-        }
 
-        return retVal;
+    public static List<SearchDermatologistDto> mapDermatologistsToDermatologistDtos(List<Dermatologist> dermatologists) {
+        return dermatologists.stream().map(SearchDermatologistDto::new).collect(Collectors.toList());
     }
 }

@@ -1,10 +1,12 @@
 package com.isa.supplier.domain;
 
 import com.isa.drug.domain.Drug;
+import com.isa.supplier.validator.quantity.QuantityValidation;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class OrderedDrug {
@@ -13,11 +15,12 @@ public class OrderedDrug {
     private Long id;
 
     @Column
+    @QuantityValidation
+    @NotNull(message = "Quantity can not be null")
     private int quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "drug_id")
-    @Fetch(FetchMode.JOIN)
     private Drug drug;
 
 

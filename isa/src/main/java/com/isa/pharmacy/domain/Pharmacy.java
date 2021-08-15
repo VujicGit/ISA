@@ -37,10 +37,10 @@ public class Pharmacy {
     @OneToOne(fetch = FetchType.LAZY, cascade = {})
     private Address address;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Warehouse warehouse;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     private PriceList priceList;
 
 

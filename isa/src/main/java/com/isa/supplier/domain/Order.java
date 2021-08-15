@@ -2,13 +2,12 @@ package com.isa.supplier.domain;
 
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.supplier.domain.enumeration.OrderStatus;
-import com.isa.user.domain.Pharmacist;
+import com.isa.supplier.validator.dueDate.DueDateValidation;
 import com.isa.user.domain.PharmacyAdministrator;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,32 +18,33 @@ public class Order {
     private Long id;
 
     @Column
-    private Date creationDate;
+    @NotNull(message = "Date of creation can not be null")
+    private LocalDate creationDate;
 
     @Column
-    private Date dueDate;
+    @NotNull(message = "Due date can not be null")
+    @DueDateValidation
+    private LocalDate dueDate;
 
     @Column
+    @NotNull(message = "Order status can not be null")
     private OrderStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
-    @Fetch(FetchMode.JOIN)
     private PharmacyAdministrator pharmacyAdministrator;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
-    @Fetch(FetchMode.JOIN)
     private List<OrderedDrug> orderedDrug;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Offer> offers;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
     private Pharmacy pharmacy;
 
     public Order() {}
 
-    public Order(Date creationDate, Date dueDate, OrderStatus status, PharmacyAdministrator pharmacyAdministrator, List<OrderedDrug> orderedDrug, List<Offer> offers, Pharmacy pharmacy) {
+    public Order(LocalDate creationDate, LocalDate dueDate, OrderStatus status, PharmacyAdministrator pharmacyAdministrator, List<OrderedDrug> orderedDrug, List<Offer> offers, Pharmacy pharmacy) {
         this.creationDate = creationDate;
         this.dueDate = dueDate;
         this.status = status;
@@ -62,19 +62,19 @@ public class Order {
         this.id = id;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
