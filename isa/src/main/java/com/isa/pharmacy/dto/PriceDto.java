@@ -3,6 +3,7 @@ package com.isa.pharmacy.dto;
 import com.isa.pharmacy.domain.Price;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class PriceDto {
 
@@ -10,8 +11,8 @@ public class PriceDto {
     private String drugCode;
     private Long drugId;
     private Double price;
-    private LocalDate startPeriod;
-    private LocalDate endPeriod;
+    private LocalDateTime startPeriod;
+    private LocalDateTime endPeriod;
 
     public PriceDto() {
 
@@ -26,7 +27,7 @@ public class PriceDto {
         this.endPeriod = price.getPriceTime().getEnd();
     }
 
-    public PriceDto(String drugName, String drugCode, Double price, Long drugId, LocalDate startPeriod, LocalDate endPeriod) {
+    public PriceDto(String drugName, String drugCode, Double price, Long drugId, LocalDateTime startPeriod, LocalDateTime endPeriod) {
         this.drugName = drugName;
         this.drugCode = drugCode;
         this.price = price;
@@ -67,19 +68,19 @@ public class PriceDto {
         this.drugId = drugId;
     }
 
-    public LocalDate getStartPeriod() {
+    public LocalDateTime getStartPeriod() {
         return startPeriod;
     }
 
-    public void setStartPeriod(LocalDate startPeriod) {
+    public void setStartPeriod(LocalDateTime startPeriod) {
         this.startPeriod = startPeriod;
     }
 
-    public LocalDate getEndPeriod() {
+    public LocalDateTime getEndPeriod() {
         return endPeriod;
     }
 
-    public void setEndPeriod(LocalDate endPeriod) {
+    public void setEndPeriod(LocalDateTime endPeriod) {
         this.endPeriod = endPeriod;
     }
 }

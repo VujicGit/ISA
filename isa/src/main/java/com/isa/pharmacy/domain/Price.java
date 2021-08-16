@@ -6,6 +6,7 @@ import com.isa.drug.domain.Drug;
 import com.isa.patient.domain.AppointmentReport;
 
 import javax.persistence.*;
+import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -24,6 +25,7 @@ public class Price {
             @AttributeOverride( name = "start", column = @Column(name = "priceStartTime")),
             @AttributeOverride( name = "end", column = @Column(name = "priceEndTime"))
     })
+    @NotNull(message = "Price time can not be null")
     TimePeriod priceTime;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -72,6 +74,7 @@ public class Price {
     public boolean isEqualByDate(Price price) {
         return drug.equals(price.drug) && priceTime.equals(price.priceTime);
     }
+
 
     @Override
     public boolean equals(Object o) {

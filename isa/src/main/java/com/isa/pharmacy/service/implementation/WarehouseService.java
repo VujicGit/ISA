@@ -21,8 +21,7 @@ public class WarehouseService implements IWarehouseService {
     @Override
     public Warehouse findByPharmacyId(Long pharmacyId) {
         Warehouse warehouse = warehouseRepository.findByPharmacyId(pharmacyId);
-        Warehouse retVal = Optional.ofNullable(warehouse).orElse(new Warehouse());
-        return retVal;
+        return Optional.ofNullable(warehouse).orElse(new Warehouse());
     }
 
     @Override

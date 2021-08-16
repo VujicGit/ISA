@@ -1,24 +1,28 @@
 package com.isa.pharmacy.dto;
 
-import org.apache.tomcat.jni.Local;
-
-import java.time.LocalDate;
+import com.isa.pharmacy.exception.PriceTimeException;
+import java.time.LocalDateTime;
 
 public class AddPriceDto {
 
     private Long drugId;
     private Double price;
-    private LocalDate startPeriod;
-    private LocalDate endPeriod;
+    private LocalDateTime startPeriod;
+    private LocalDateTime endPeriod;
 
     public AddPriceDto() {
     }
 
-    public AddPriceDto(Long drugId, Double price, LocalDate startPeriod, LocalDate endPeriod) {
+    public AddPriceDto(Long drugId, Double price, LocalDateTime startPeriod, LocalDateTime endPeriod) {
+        validatePriceTime(startPeriod, endPeriod);
         this.drugId = drugId;
         this.price = price;
         this.startPeriod = startPeriod;
         this.endPeriod = endPeriod;
+    }
+
+    private void validatePriceTime(LocalDateTime start, LocalDateTime end) throws PriceTimeException {
+        if(end.isBefore(start) || start.equals(end)) throw new PriceTimeException("End date must be after start date");
     }
 
     public Long getDrugId() {
@@ -37,19 +41,19 @@ public class AddPriceDto {
         this.price = price;
     }
 
-    public LocalDate getEndPeriod() {
+    public LocalDateTime getEndPeriod() {
         return endPeriod;
     }
 
-    public void setEndPeriod(LocalDate endPeriod) {
+    public void setEndPeriod(LocalDateTime endPeriod) {
         this.endPeriod = endPeriod;
     }
 
-    public LocalDate getStartPeriod() {
+    public LocalDateTime getStartPeriod() {
         return startPeriod;
     }
 
-    public void setStartPeriod(LocalDate startPeriod) {
+    public void setStartPeriod(LocalDateTime startPeriod) {
         this.startPeriod = startPeriod;
     }
 }
