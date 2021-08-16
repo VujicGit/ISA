@@ -19,30 +19,27 @@ import java.util.List;
 public class PharmacistController {
 
     private final IPharmacistService pharmacistService;
-    private final PharmacistMapper pharmacistMapper;
-
 
     @Autowired
-    public PharmacistController(IPharmacistService pharmacistService, PharmacistMapper pharmacistMapper) {
+    public PharmacistController(IPharmacistService pharmacistService) {
         this.pharmacistService = pharmacistService;
-        this.pharmacistMapper = pharmacistMapper;
     }
 
     @GetMapping
     public ResponseEntity<?> findAll() {
-        List<SearchPharmacistDto> searchPharmacistDtos = pharmacistMapper.mapPharmacistsToSearchPharmacistDtos(pharmacistService.findAllWithPharmacies());
+        List<SearchPharmacistDto> searchPharmacistDtos = PharmacistMapper.mapPharmacistsToSearchPharmacistDtos(pharmacistService.findAllWithPharmacies());
         return new ResponseEntity<>(searchPharmacistDtos, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{name}/{surname}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> search(@PathVariable String name, @PathVariable String surname) {
-        List<SearchPharmacistDto> searchPharmacistDtos = pharmacistMapper.mapPharmacistsToSearchPharmacistDtos(pharmacistService.search(name, surname));
+        List<SearchPharmacistDto> searchPharmacistDtos = PharmacistMapper.mapPharmacistsToSearchPharmacistDtos(pharmacistService.search(name, surname));
         return new ResponseEntity<>(searchPharmacistDtos, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{name}/{surname}/{pharmacyId}/{minGrade}/{maxGrade}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> filter(@PathVariable String name, @PathVariable String surname, @PathVariable Long pharmacyId, @PathVariable Double minGrade, @PathVariable Double maxGrade) {
-        List<SearchPharmacistDto> searchPharmacistDtos = pharmacistMapper.mapPharmacistsToSearchPharmacistDtos(pharmacistService.filter(name, surname, pharmacyId, minGrade, maxGrade));
+        List<SearchPharmacistDto> searchPharmacistDtos = PharmacistMapper.mapPharmacistsToSearchPharmacistDtos(pharmacistService.filter(name, surname, pharmacyId, minGrade, maxGrade));
         return new ResponseEntity<>(searchPharmacistDtos, HttpStatus.OK);
     }
 }

@@ -3,6 +3,7 @@ package com.isa.pharmacy.domain;
 import com.isa.appointment.domain.Appointment;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class PriceList {
@@ -11,10 +12,14 @@ public class PriceList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Pharmacy pharmacy;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Price> prices;
 
     public PriceList(){}
+
+    public PriceList(List<Price> prices) {
+        this.prices = prices;
+    }
 
     public Long getId() {
         return id;
@@ -24,11 +29,11 @@ public class PriceList {
         this.id = id;
     }
 
-    public Pharmacy getPharmacy() {
-        return pharmacy;
+    public List<Price> getPrices() {
+        return prices;
     }
 
-    public void setPharmacy(Pharmacy pharmacy) {
-        this.pharmacy = pharmacy;
+    public void setPrices(List<Price> prices) {
+        this.prices = prices;
     }
 }

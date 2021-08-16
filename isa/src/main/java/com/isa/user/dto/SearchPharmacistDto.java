@@ -1,5 +1,8 @@
 package com.isa.user.dto;
 
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.user.domain.Pharmacist;
+
 public class SearchPharmacistDto {
 
     private String name;
@@ -12,6 +15,13 @@ public class SearchPharmacistDto {
         this.surname = surname;
         this.pharmacy = pharmacy;
         this.grade = grade;
+    }
+
+    public SearchPharmacistDto(Pharmacist pharmacist) {
+        this.name = pharmacist.getName();
+        this.surname = pharmacist.getSurname();
+        this.pharmacy = pharmacist.getPharmacy().getDescription();
+        this.grade = pharmacist.getGrade();
     }
 
     public String getName() {

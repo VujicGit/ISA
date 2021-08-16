@@ -1,6 +1,7 @@
 package com.isa.drug.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Allergy {
@@ -12,11 +13,18 @@ public class Allergy {
     @Column
     private String name;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     private Drug drug;
 
-    //TODO Add patient
 
+    public Allergy(String name, Drug drug) {
+        this.name = name;
+        this.drug = drug;
+    }
+
+    public Allergy() {
+
+    }
 
     public Long getId() {
         return id;
@@ -34,11 +42,5 @@ public class Allergy {
         this.name = name;
     }
 
-    public Drug getDrug() {
-        return drug;
-    }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
-    }
 }

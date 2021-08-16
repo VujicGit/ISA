@@ -1,6 +1,10 @@
 package com.isa.user.dto;
 
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.user.domain.Dermatologist;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchDermatologistDto {
     private String name;
@@ -13,6 +17,13 @@ public class SearchDermatologistDto {
         this.surname = surname;
         this.pharmacies = pharmacies;
         this.grade = grade;
+    }
+
+    public SearchDermatologistDto(Dermatologist dermatologist) {
+        this.name = dermatologist.getName();
+        this.surname = dermatologist.getSurname();
+        this.pharmacies = dermatologist.getPharmacies().stream().map(Pharmacy::getDescription).collect(Collectors.toList());
+        this.grade = dermatologist.getGrade();
     }
 
     public String getName() {

@@ -4,6 +4,7 @@ package com.isa.pharmacy.domain;
 import com.isa.drug.domain.Drug;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Item {
@@ -12,15 +13,17 @@ public class Item {
     private Long id;
 
     @Column
-    private int quantity;
+    private Integer quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private Warehouse warehouse;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     private Drug drug;
 
     public Item(){}
+
+    public Item(Integer quantity, Drug drug) {
+        this.quantity = quantity;
+        this.drug = drug;
+    }
 
     public Long getId() {
         return id;
@@ -38,13 +41,6 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
-    }
 
     public Drug getDrug() {
         return drug;
@@ -54,5 +50,16 @@ public class Item {
         this.drug = drug;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return drug.equals(item.drug);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(drug, id, quantity);
+    }
 }

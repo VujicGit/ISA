@@ -22,7 +22,7 @@ public class DermatologistService implements IDermatologistService {
 
     @Override
     public List<Dermatologist> findAll() {
-        return dermatologistRepository.findAll();
+       return dermatologistRepository.findAll();
     }
 
 
