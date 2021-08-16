@@ -1,8 +1,6 @@
 
 package com.isa.pharmacy.domain;
 
-import com.isa.appointment.domain.Appointment;
-import com.isa.drug.domain.Drug;
 import com.isa.user.domain.Address;
 import com.isa.user.domain.Dermatologist;
 import com.isa.user.domain.Pharmacist;
@@ -41,7 +39,7 @@ public class Pharmacy {
     private Warehouse warehouse;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private PriceList priceList;
+    private Pricelist priceList;
 
 
     public Pharmacy(Long id, String description) {
@@ -93,11 +91,11 @@ public class Pharmacy {
         this.warehouse = warehouse;
     }
 
-    public PriceList getPriceList() {
+    public Pricelist getPriceList() {
         return priceList;
     }
 
-    public void setPriceList(PriceList priceList) {
+    public void setPriceList(Pricelist priceList) {
         this.priceList = priceList;
     }
 

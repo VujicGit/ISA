@@ -1,5 +1,6 @@
 package com.isa.helper;
 
+import com.isa.pharmacy.exception.PriceTimeException;
 import org.postgresql.util.PSQLException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(value = {NoSuchElementException.class})
     protected ResponseEntity<?> handle3(NoSuchElementException ex) {
+        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {PriceTimeException.class})
+    protected ResponseEntity<?> handle4(PriceTimeException ex) {
         return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
