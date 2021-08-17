@@ -20,4 +20,11 @@ public class PharmacyService implements IPharmacyService {
     public Pharmacy getById(Long pharmacyId) {
         return pharmacyRepository.findById(pharmacyId).orElse(new Pharmacy());
     }
+
+    @Override
+    public Pharmacy findById(Long pharmacyId) {
+        return pharmacyRepository.findById(pharmacyId).orElse(null);
+    }
+
+
 }

@@ -53,3 +53,6 @@ insert into warehouse (pharmacy_id) values (1);
 insert into warehouse_items (warehouse_id, items_id) values (1, 1);
 
 insert into pricelist (pharmacy_id) values (1);
+
+insert into promotion (description, promotion_start, promotion_end, pharmacy_id)
+    values ('20% popusta na brufen do kraja meseca1', '2021-08-17T00:00:00', '2021-09-17T00:00:00', 1);
