@@ -46,8 +46,6 @@ public class PromotionService implements IPromotionService {
         Promotion newPromotion = new Promotion(promotion.getDescription(), timePeriod, pharmacy);
 
         sendMails(pharmacy, newPromotion);
-
-
         return promotionRepository.save(newPromotion);
     }
 
@@ -59,6 +57,8 @@ public class PromotionService implements IPromotionService {
     private void sendMails(Pharmacy pharmacy, Promotion promotion) {
 
         Subscription subscription = subscriptionService.getSubscriptionByPharmacyIdWithPatients(pharmacy.getId());
+
+        if(subscription == null) return;
 
         List<Patient> users = subscription.getPatient();
 

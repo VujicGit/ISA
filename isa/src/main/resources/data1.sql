@@ -26,7 +26,7 @@ insert into users (email, gender, identification_number, name, password, passwor
     values ('user3@gmail.com', 0, '22049910028', 'Isak', 'ajzak', false, '065/323212', 1, 'Isakovic', false, 4);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('bokdbudvvxbonrrvzx@rffff.net', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5);
+    values ('bojanvjc@gmail.com', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5);
 
 insert into employee (id) values (1);
 insert into employee (id) values (2);
