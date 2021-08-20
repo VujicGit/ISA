@@ -1,6 +1,6 @@
 package com.isa.supplier.controller;
 
-import com.isa.helper.ErrorMapper;
+import com.isa.helper.error.ErrorMapper;
 import com.isa.supplier.domain.Order;
 import com.isa.supplier.domain.enumeration.OrderStatus;
 import com.isa.supplier.dto.CreateOrderDto;

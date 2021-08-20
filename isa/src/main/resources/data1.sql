@@ -6,11 +6,13 @@ insert into location (latitude, longitude) values (45.267136, 19.833549);
 insert into location (latitude, longitude) values (45.24915928867009, 19.84284031690104);
 insert into location (latitude, longitude) values (45.24993937456046, 19.84684437097689);
 insert into location (latitude, longitude) values (45.250312839697166, 19.84671996728179);
+insert into location (latitude, longitude) values (45.816407202210186, 19.640509353806817);
 
 insert into address (number, street, city_id, location_id) values ('8', 'Maksima Gorkog', 1, 1);
 insert into address (number, street, city_id, location_id) values ('9', 'Maksima Gorkog', 1, 2);
 insert into address (number, street, city_id, location_id) values ('10', 'Maksima Gorkog', 1, 3);
 insert into address (number, street, city_id, location_id) values ('11', 'Maksima Gorkog', 1, 4);
+insert into address (number, street, city_id, location_id) values ('12', 'Maksima Gorkog', 1, 5);
 
 insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
 
@@ -23,6 +25,9 @@ insert into users (email, gender, identification_number, name, password, passwor
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
     values ('user3@gmail.com', 0, '22049910028', 'Isak', 'ajzak', false, '065/323212', 1, 'Isakovic', false, 4);
 
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
+    values ('bojanvjc@gmail.com', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5);
+
 insert into employee (id) values (1);
 insert into employee (id) values (2);
 
@@ -33,6 +38,8 @@ insert into pharmacist (id, pharmacy_id, grade) values (2, 1, 8.2);
 insert into pharmacy_administrator (id, pharmacy_id) values (3, 1);
 
 insert into pharmacys_dermatolostist (pharmacy_id, dermatologist_id) values (1, 1);
+
+insert into patient (penalties, id) values (0, 4);
 
 insert into ingredient (name) values ('ibuprofen');
 
@@ -53,3 +60,10 @@ insert into warehouse (pharmacy_id) values (1);
 insert into warehouse_items (warehouse_id, items_id) values (1, 1);
 
 insert into pricelist (pharmacy_id) values (1);
+
+insert into promotion (description, promotion_start, promotion_end, pharmacy_id)
+    values ('20% popusta na brufen do kraja meseca1', '2021-08-17T00:00:00', '2021-09-17T00:00:00', 1);
+
+insert into subscription (pharmacy_id) values (1);
+
+insert into subscription_patient (subscription_id, patient_id) values (1, 4);

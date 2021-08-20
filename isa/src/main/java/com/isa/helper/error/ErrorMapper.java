@@ -1,4 +1,4 @@
-package com.isa.helper;
+package com.isa.helper.error;
 
 import org.springframework.validation.ObjectError;
 import java.util.ArrayList;
