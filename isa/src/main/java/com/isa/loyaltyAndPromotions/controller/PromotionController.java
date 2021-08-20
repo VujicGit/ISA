@@ -1,11 +1,10 @@
 package com.isa.loyaltyAndPromotions.controller;
 
-import com.isa.helper.Error;
+import com.isa.helper.error.Error;
 import com.isa.loyaltyAndPromotions.domain.Promotion;
 import com.isa.loyaltyAndPromotions.dto.PromotionDto;
 import com.isa.loyaltyAndPromotions.mapper.PromotionMapper;
 import com.isa.loyaltyAndPromotions.service.interfaces.IPromotionService;
-import com.sun.net.httpserver.HttpContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

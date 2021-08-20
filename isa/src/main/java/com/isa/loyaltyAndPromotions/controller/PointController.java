@@ -1,11 +1,10 @@
 package com.isa.loyaltyAndPromotions.controller;
 
-import com.isa.helper.ErrorMapper;
+import com.isa.helper.error.ErrorMapper;
 import com.isa.loyaltyAndPromotions.domain.Point;
 import com.isa.loyaltyAndPromotions.dto.PointDto;
 import com.isa.loyaltyAndPromotions.service.implementation.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

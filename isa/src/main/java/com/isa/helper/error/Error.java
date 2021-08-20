@@ -1,4 +1,4 @@
-package com.isa.helper;
+package com.isa.helper.error;
 
 public class Error {
 
