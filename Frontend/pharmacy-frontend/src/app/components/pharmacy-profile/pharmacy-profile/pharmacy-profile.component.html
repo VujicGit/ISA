@@ -1,0 +1,27 @@
+<div class="container">
+    <form [formGroup]="profileInfoForm">
+        <div class="row">
+            <mat-form-field class="form-field">
+                <input matInput placeholder="Enter pharmacy name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="row">
+                <app-state-input></app-state-input>
+        </div>
+        <div class="row">
+            <mat-form-field class="form-field">
+                <input matInput placeholder="Ender city" formControlName="city">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="form-field">
+                <input matInput placeholder="Enter address" formControlName="address">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="form-field">
+                <textarea matInput placeholder="Enter pharmacy description" formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
