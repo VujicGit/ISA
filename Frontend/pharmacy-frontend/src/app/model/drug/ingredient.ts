@@ -1,9 +1,7 @@
 export class Ingredient {
-    id: number;
     name: String;
 
-    constructor(id: number, name: String) {
-        this.id = id;
+    constructor(name: String) {
         this.name = name;
     }
 }
