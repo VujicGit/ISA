@@ -19,6 +19,7 @@ export class MoreInfoDialogComponent implements OnInit {
   manufacturer: String;
   ingredients: Ingredient[]
   ingredientsString: string;
+  contraindications: String;
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<MoreInfoDialogComponent>, 
     private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: Drug) { }
@@ -29,11 +30,13 @@ export class MoreInfoDialogComponent implements OnInit {
     this.dailyDose = this.data.dailyDose;
     this.manufacturer = this.data.manufacturer
     this.ingredients = this.data.ingredients;
+    this.contraindications = this.data.contraindications;
     this.form = this.fb.group({
       name: this.name,
       code: this.code,
       dailyDose: this.dailyDose,
-      manufactuer: this.manufacturer
+      manufactuer: this.manufacturer,
+      contraindications: this.contraindications
     })
   }
 

@@ -6,7 +6,10 @@ export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080',
   dermatologist: 'dermatologist',
-  pharmacy: 'pharmacy'
+  pharmacy: 'pharmacy',
+  warehouse: 'warehouse',
+  items: 'items',
+  search: 'search'
 };
 
 /*

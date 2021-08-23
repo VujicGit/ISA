@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Allergy } from 'src/app/model/drug/allergy';
 import { Drug } from 'src/app/model/drug/drug';
 import { Ingredient } from 'src/app/model/drug/ingredient';
+import { WarehouseService } from 'src/app/services/warehouse-service/warehouse.service';
 import { MoreInfoDialogComponent } from '../more-info-dialog/more-info-dialog/more-info-dialog.component';
 
 @Component({
@@ -13,14 +14,20 @@ import { MoreInfoDialogComponent } from '../more-info-dialog/more-info-dialog/mo
 export class DrugComponent implements OnInit {
 
   drugs: Drug[];
-  displayedColumns: String[] = ["Name", "Manufacturer", "showMore", "remove"]
-  constructor(private dialog: MatDialog) { }
+  displayedColumns: String[] = ["Name", "Manufacturer", "Quantity", "showMore", "remove"]
+  constructor(private dialog: MatDialog, private warehouseService: WarehouseService) { }
 
   ngOnInit(): void {
     //call a service
-    this.drugs  = [new Drug(
-      1, "Brufen", "123", "Hemofarm", "Lek za glavobolju", 1, 1, "Dva puta dnevno",
-      [new Ingredient(1, "So"), new Ingredient(2, "Biber")], [new Allergy(1, "Alergija na prasinu")])]
+    this.warehouseService.getItems().subscribe(
+
+      data => {
+        this.drugs = data;
+      },
+      err => {
+        console.log(err);
+      }
+    )
 
   }
 
@@ -34,4 +41,26 @@ export class DrugComponent implements OnInit {
     })
   }
 
+  deleteDrug(drugCode: String) {
+    this.warehouseService.deleteDrug(drugCode).subscribe(
+      success => {
+        this.updateElements(drugCode);
+      },
+      error => {
+        alert("Error");
+      }
+    )
+  }
+
+  updateElements(drugCode: String) {
+    this.drugs = this.drugs.filter(item => item.code !== drugCode);
+  }
+
+  search() {
+    this.warehouseService.search("M01AE01").subscribe(
+      data => {
+        this.drugs = data;
+      }
+    )
+  }
 }

@@ -10,14 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/warehouse")
 public class WarehouseController {
 
@@ -40,4 +39,23 @@ public class WarehouseController {
         return new ResponseEntity<>(itemDtos, HttpStatus.OK);
 
     }
+
+    @DeleteMapping(value = "/{drugId}")
+    public ResponseEntity<?> delete(@PathVariable String drugId) {
+        Long pharmacyId = 1L;
+        Warehouse warehouse = warehouseService.deleteItem(pharmacyId, drugId);
+        if(warehouse == null) {
+            return new ResponseEntity<>(new Error("Error"), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/search/{drugCode}")
+    public ResponseEntity<?> search(@PathVariable String drugCode) {
+        Long pharmacyId = 1L;
+        List<Item> items = warehouseService.search(pharmacyId, drugCode);
+        List<ItemDto> itemDtos = ItemMapper.mapItemsToItemsDtos(items);
+        return new ResponseEntity<>(itemDtos, HttpStatus.OK);
+    }
+
 }
