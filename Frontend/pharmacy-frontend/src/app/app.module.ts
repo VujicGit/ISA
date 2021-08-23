@@ -21,6 +21,8 @@ import { DrugComponent } from './components/drug/drug/drug.component';
 import {MatTableModule} from '@angular/material/table';
 import { MoreInfoDialogComponent } from './components/drug/more-info-dialog/more-info-dialog/more-info-dialog.component';
 import { PharmacistPharmacyAdminComponent } from './components/pharmacist-pharmacy-admin/pharmacist-pharmacy-admin/pharmacist-pharmacy-admin.component';
+import { DermatologistsComponent } from './components/dermatologists/dermatologists.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { PharmacistPharmacyAdminComponent } from './components/pharmacist-pharma
     PredefinedExaminationComponent,
     DrugComponent,
     MoreInfoDialogComponent,
-    PharmacistPharmacyAdminComponent
+    PharmacistPharmacyAdminComponent,
+    DermatologistsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { PharmacistPharmacyAdminComponent } from './components/pharmacist-pharma
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule
   ],
   providers: [
     MatDatepickerModule,

@@ -6,6 +6,7 @@ import { MoreInfoDialogComponent } from './components/drug/more-info-dialog/more
 import { PharmacyProfileComponent } from './components/pharmacy-profile/pharmacy-profile/pharmacy-profile.component';
 import { PredefinedExaminationComponent } from './components/predefined-examination/predefined-examination/predefined-examination.component';
 import { StateInputComponent } from './components/state-input/state-input/state-input.component';
+import { DermatologistsComponent } from './components/dermatologists/dermatologists.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'dermatologist_profile', 
     component: DermatologistHomepageComponent,
+  },
+  {
+    path: 'dermatologists',
+    component: DermatologistsComponent
   }
 ];
 

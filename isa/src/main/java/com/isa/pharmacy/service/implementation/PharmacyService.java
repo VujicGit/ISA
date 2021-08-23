@@ -6,6 +6,8 @@ import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PharmacyService implements IPharmacyService {
 
@@ -24,6 +26,11 @@ public class PharmacyService implements IPharmacyService {
     @Override
     public Pharmacy findById(Long pharmacyId) {
         return pharmacyRepository.findById(pharmacyId).orElse(null);
+    }
+
+    @Override
+    public List<Pharmacy> findAll() {
+        return pharmacyRepository.findAll();
     }
 
 
