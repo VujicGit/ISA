@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-card>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput placeholder="Name" formControlName="name">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput placeholder="Surname" formControlName="surname">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput placeholder="Address" formControlName="address">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput placeholder="City" formControlName="city">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput placeholder="Country" formControlName="country">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput placeholder="Phone" formControlName="phoneNumber">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput type="password" placeholder="Password" formControlName="password">
+                </mat-form-field>
+            </div>
+            <div class="inputField">
+                <mat-form-field class="form-field">
+                    <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword">
+                </mat-form-field>
+            </div>
+            <button mat-flat-button color="primary" type="submit">Update</button>
+        </form>
+    </mat-card>
+</div>
