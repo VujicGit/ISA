@@ -23,7 +23,7 @@ insert into users (email, gender, identification_number, name, password, passwor
     values ('user2@gmail.com', 0, '22039920028', 'Petar', 'pera', false, '065/323232', 2, 'Petrovic', false, 3);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('user3@gmail.com', 0, '22049910028', 'Isak', 'ajzak', false, '065/323212', 1, 'Isakovic', false, 4);
+    values ('user3@gmail.com', 0, '22049910028', 'Isak', '$2a$10$yiJVwyT4eF/UboEM9oPpYOyIou86mFPnVvYC8YtgFGcy76BV9wJQy', false, '065/323212', 1, 'Isakovic', false, 4);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
     values ('bojanvjc@gmail.com', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5);
@@ -67,3 +67,7 @@ insert into promotion (description, promotion_start, promotion_end, pharmacy_id)
 insert into subscription (pharmacy_id) values (1);
 
 insert into subscription_patient (subscription_id, patient_id) values (1, 4);
+
+insert into authority (id, name) values (1, 'ROLE_PHARMACY_ADMIN');
+
+insert into user_authority (user_id, authority_id) values (3, 1);
