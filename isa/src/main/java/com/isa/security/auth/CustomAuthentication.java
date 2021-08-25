@@ -1,7 +1,9 @@
 package com.isa.security.auth;
 
+import com.isa.security.dto.UserTokenState;
 import com.isa.user.domain.PharmacyAdministrator;
 import com.isa.user.domain.User;
+import com.isa.user.domain.enumeration.Role;
 import com.isa.user.dto.JwtAuthenticationRequest;
 import com.isa.user.exception.InvalidCredentialsException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,15 +19,16 @@ public class CustomAuthentication {
     private final AuthenticationManager authenticationManager;
     private final TokenUtils tokenUtils;
 
+
     public CustomAuthentication(AuthenticationManager authenticationManager, TokenUtils tokenUtils) {
         this.authenticationManager = authenticationManager;
         this.tokenUtils = tokenUtils;
     }
 
-    public String authenticate() {
+    public UserTokenState authenticate() {
 
         Authentication authentication = authenticationManager.
-                authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+                authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         User user = (User) authentication.getPrincipal();
         String jwt = null;
@@ -35,7 +38,7 @@ public class CustomAuthentication {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return jwt;
+        return new UserTokenState(jwt, TokenExpiresIn(), user.getRole(), user.getId());
     }
 
     private boolean isPharmacyAdministrator(User user) {
@@ -60,4 +63,5 @@ public class CustomAuthentication {
     public int TokenExpiresIn() {
         return tokenUtils.getExpiredIn();
     }
+
 }

@@ -1,0 +1,19 @@
+<div class="container main-container">
+    <form [formGroup]="loginForm">
+    <div class="row">
+        <mat-form-field class="form-field">
+            <input matInput placeholder="Ender email" formControlName="email">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field class="form-field">
+            <input matInput placeholder="Ender password" formControlName="password">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <div class="col">
+        <button mat-raised-button color="primary" (click)="login()">Login</button>
+    </div>
+    </div>
+</form>
+</div>
