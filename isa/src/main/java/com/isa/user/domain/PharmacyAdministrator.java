@@ -8,8 +8,16 @@ import javax.persistence.*;
 @Entity
 public class PharmacyAdministrator extends User {
 
+    public Long getPharmacyId() {
+        return pharmacyId;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
+
+    @Column(name = "pharmacy_id", insertable = false, updatable = false)
+    private Long pharmacyId;
 
     public PharmacyAdministrator() {}
 
