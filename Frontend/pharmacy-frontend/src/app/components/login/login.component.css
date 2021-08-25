@@ -1,0 +1,12 @@
+.main-container {
+    justify-content: center;
+    display: block;
+    max-width: 25vw;
+    min-height: 25vw;
+    position: relative;
+    top: 40%;
+}
+
+.row {
+    margin-top: 20px;
+}

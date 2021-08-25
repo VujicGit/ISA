@@ -11,7 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { StateInputComponent } from './components/state-input/state-input/state-input.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PredefinedExaminationComponent } from './components/predefined-examination/predefined-examination/predefined-examination.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -23,6 +23,11 @@ import { MoreInfoDialogComponent } from './components/drug/more-info-dialog/more
 import { PharmacistPharmacyAdminComponent } from './components/pharmacist-pharmacy-admin/pharmacist-pharmacy-admin/pharmacist-pharmacy-admin.component';
 import { DermatologistsComponent } from './components/dermatologists/dermatologists.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { LoginComponent } from './components/login/login.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { JwtInterceptor } from './security/jwt-interceptor';
+import { ErrorInterceptor } from './security/error-interceptor';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     DrugComponent,
     MoreInfoDialogComponent,
     PharmacistPharmacyAdminComponent,
-    DermatologistsComponent
+    DermatologistsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -52,11 +58,15 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatNativeDateModule,
     MatButtonModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     MatDatepickerModule,
     MatNativeDateModule,
+    {provide : HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi : true},
+    {provide : HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi : true},
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

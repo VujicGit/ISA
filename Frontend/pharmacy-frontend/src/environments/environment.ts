@@ -9,7 +9,9 @@ export const environment = {
   pharmacy: 'pharmacy',
   warehouse: 'warehouse',
   items: 'items',
-  search: 'search'
+  search: 'search',
+  login: 'login',
+  auth: 'auth'
 };
 
 /*

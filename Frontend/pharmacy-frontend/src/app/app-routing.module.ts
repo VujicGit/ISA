@@ -7,6 +7,9 @@ import { PharmacyProfileComponent } from './components/pharmacy-profile/pharmacy
 import { PredefinedExaminationComponent } from './components/predefined-examination/predefined-examination/predefined-examination.component';
 import { StateInputComponent } from './components/state-input/state-input/state-input.component';
 import { DermatologistsComponent } from './components/dermatologists/dermatologists.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './security/auth-guard';
+import { Role } from './model/user/role';
 
 const routes: Routes = [
   {
@@ -35,7 +38,13 @@ const routes: Routes = [
   },
   {
     path: 'dermatologists',
-    component: DermatologistsComponent
+    component: DermatologistsComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.User]}
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
