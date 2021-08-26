@@ -28,6 +28,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { JwtInterceptor } from './security/jwt-interceptor';
 import { ErrorInterceptor } from './security/error-interceptor';
 import { DatePipe } from '@angular/common';
+import { PromotionsComponent } from './components/promotions/promotions.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DatePipe } from '@angular/common';
     MoreInfoDialogComponent,
     PharmacistPharmacyAdminComponent,
     DermatologistsComponent,
-    LoginComponent
+    LoginComponent,
+    PromotionsComponent
   ],
   imports: [
     BrowserModule,
