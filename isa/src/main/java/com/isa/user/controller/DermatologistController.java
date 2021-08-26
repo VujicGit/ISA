@@ -1,5 +1,6 @@
 package com.isa.user.controller;
 
+import com.isa.user.domain.PharmacyAdministrator;
 import com.isa.user.dto.SearchDermatologistDto;
 import com.isa.user.mapper.DermatologistMapper;
 import com.isa.user.service.interfaces.IDermatologistService;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +28,9 @@ public class DermatologistController {
     @PreAuthorize("hasRole('ROLE_PHARMACY_ADMIN')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
+
+        PharmacyAdministrator administrator = (PharmacyAdministrator) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(administrator.getPharmacyId());
         List<SearchDermatologistDto> dermatologistDtos = DermatologistMapper.mapDermatologistsToDermatologistDtos(dermatologistService.findAllWithPharmacies());
         return new ResponseEntity<>(dermatologistDtos, HttpStatus.OK);
     }
