@@ -10,6 +10,7 @@ import { DermatologistsComponent } from './components/dermatologists/dermatologi
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './security/auth-guard';
 import { Role } from './model/user/role';
+import { PromotionsComponent } from './components/promotions/promotions.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'createPromotion',
+    component: PromotionsComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Admin]}
   }
 ];
 

@@ -11,7 +11,8 @@ export const environment = {
   items: 'items',
   search: 'search',
   login: 'login',
-  auth: 'auth'
+  auth: 'auth',
+  promotion: 'promotion'
 };
 
 /*
