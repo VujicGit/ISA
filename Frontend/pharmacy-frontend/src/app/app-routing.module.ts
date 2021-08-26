@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './security/auth-guard';
 import { Role } from './model/user/role';
 import { PromotionsComponent } from './components/promotions/promotions.component';
+import { CreateOrderComponent } from './components/order/create-order/create-order.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
     component: PromotionsComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.Admin]}
+  },
+  {
+    path: 'createOrder',
+    component: CreateOrderComponent
   }
 ];
 

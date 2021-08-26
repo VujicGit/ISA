@@ -29,6 +29,7 @@ import { JwtInterceptor } from './security/jwt-interceptor';
 import { ErrorInterceptor } from './security/error-interceptor';
 import { DatePipe } from '@angular/common';
 import { PromotionsComponent } from './components/promotions/promotions.component';
+import { CreateOrderComponent } from './components/order/create-order/create-order.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PromotionsComponent } from './components/promotions/promotions.componen
     PharmacistPharmacyAdminComponent,
     DermatologistsComponent,
     LoginComponent,
-    PromotionsComponent
+    PromotionsComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,

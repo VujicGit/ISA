@@ -1,0 +1,26 @@
+    <form [formGroup]="createOrderForm">
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Select an option</mat-label>
+                    <mat-select [(value)]="selected" formControlName="drugId" [errorStateMatcher]="matcher">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let drug of drugs" [value]="drug.id">{{drug.name}}</mat-option>
+
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <input matInput placeholder="Enter quantity" formControlName="quantityControl">
+                    
+                  </mat-form-field>
+            </div>
+            <div class="col">
+                <button mat-raised-button color="primary" [disabled]="!isValid || !createOrderForm.valid" (click)="addOrderedDrug()">Add</button>
+            </div>
+            <div class="col">
+                <button mat-raised-button color="primary" (click)="submitOrder()">Create order</button>
+            </div>
+        </div>
+    </form>
