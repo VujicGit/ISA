@@ -1,9 +1,9 @@
 export class OrderedDrug {
-    id: number;
+    drugId: number;
     quantity: number;
 
     constructor(id: number, quantity: number) {
-        this.id = id;
+        this.drugId = id;
         this.quantity = quantity;
     }
 }
