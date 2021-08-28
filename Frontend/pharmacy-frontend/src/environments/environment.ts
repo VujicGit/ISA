@@ -12,7 +12,10 @@ export const environment = {
   search: 'search',
   login: 'login',
   auth: 'auth',
-  promotion: 'promotion'
+  promotion: 'promotion',
+  drug: 'drug',
+  basic: 'basic',
+  order: 'order'
 };
 
 /*

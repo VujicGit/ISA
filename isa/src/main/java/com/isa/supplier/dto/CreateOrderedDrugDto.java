@@ -5,6 +5,8 @@ import com.isa.supplier.validator.quantity.QuantityValidation;
 import javax.validation.constraints.NotNull;
 
 public class CreateOrderedDrugDto {
+    
+    @NotNull(message = "Drug id can not be null")
     private Long drugId;
 
     @QuantityValidation
