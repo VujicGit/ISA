@@ -3,10 +3,10 @@ language: java
 jdk: openjdk11
 
 addons:
-  sonarcloud:
-    organization: "vujicgit"
-    token:
-      secure: "**************************" # encrypted value of your token
+  sonarcloud: 
+  organization: "vujicgit"
+  token: $SONAR_TOKEN
+
 
 before_install:
   - cd isa
