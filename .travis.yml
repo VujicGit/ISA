@@ -5,7 +5,7 @@ addons:
       secure: "**************************" # encrypted value of your token
 
 before_install:
-  - chmod +x mvnw
+  - chmod +x isa/mvnw
 
 script:
   - ./isa/mvnw clean install -DskipTests=false -B
