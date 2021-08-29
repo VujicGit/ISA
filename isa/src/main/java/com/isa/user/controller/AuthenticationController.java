@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 @RequestMapping(value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticationController {
 
+    
     private final CustomAuthentication customAuthentication;
 
     @Autowired

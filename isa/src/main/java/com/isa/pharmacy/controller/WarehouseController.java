@@ -6,10 +6,12 @@ import com.isa.pharmacy.dto.ItemDto;
 import com.isa.pharmacy.mapper.ItemMapper;
 import com.isa.pharmacy.service.implementation.WarehouseService;
 import com.isa.pharmacy.service.interfaces.IWarehouseService;
+import com.isa.user.domain.PharmacyAdministrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -30,7 +32,9 @@ public class WarehouseController {
     @GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findItemsByPharmacyId() {
 
-        Long pharmacyId = 1L; //get from jwt
+        PharmacyAdministrator pharmacyAdministrator = (PharmacyAdministrator) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Long pharmacyId = pharmacyAdministrator.getPharmacyId();
         List<Item> items = warehouseService.findByPharmacyId(pharmacyId).getItems();
         if (items == null) {
             items = new ArrayList<>();
