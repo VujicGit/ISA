@@ -16,12 +16,13 @@ public class ItemDto {
     private String contraindications;
     private List<IngredientDto> ingredients;
     private int quantity;
+    private Long drugId;
 
     public ItemDto() {
 
     }
 
-    public ItemDto(String name, String code, String composition, String manufacturer, String note, String dailyDose, String contraindications, List<IngredientDto> ingredients, int quantity) {
+    public ItemDto(String name, String code, String composition, String manufacturer, String note, String dailyDose, String contraindications, List<IngredientDto> ingredients, int quantity, Long drugId) {
         this.name = name;
         this.code = code;
         this.composition = composition;
@@ -31,6 +32,7 @@ public class ItemDto {
         this.contraindications = contraindications;
         this.ingredients = ingredients;
         this.quantity = quantity;
+        this.drugId = drugId;
     }
 
     public ItemDto(Item item) {
@@ -43,6 +45,7 @@ public class ItemDto {
         this.contraindications = item.getDrug().getContraindications();
         this.ingredients = item.getDrug().getIngredients().stream().map(IngredientDto::new).collect(Collectors.toList());
         this.quantity = item.getQuantity();
+        this.drugId = item.getDrug().getId();
     }
 
     public String getName() {
@@ -115,5 +118,13 @@ public class ItemDto {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getDrugId() {
+        return drugId;
+    }
+
+    public void setDrugId(Long drugId) {
+        this.drugId = drugId;
     }
 }

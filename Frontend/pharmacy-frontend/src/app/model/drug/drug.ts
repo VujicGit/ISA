@@ -10,6 +10,7 @@ export class Drug {
     dailyDose: String;
     ingredients: Ingredient[];
     quantity: number;
+    drugId: number;
 
     constructor(
         name: String, 
@@ -19,7 +20,8 @@ export class Drug {
         contraindications: String,
         dailyDose: String,
         ingredients: Ingredient[],
-        quantity: number
+        quantity: number,
+        drugId: number
         ) {
             this.name = name;
             this.code = code;
@@ -29,6 +31,7 @@ export class Drug {
             this.ingredients = ingredients;
             this.quantity = quantity;
             this.contraindications = contraindications;
+            this.drugId = drugId;
         }
 
 }

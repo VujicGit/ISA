@@ -12,6 +12,7 @@ import { AuthGuard } from './security/auth-guard';
 import { Role } from './model/user/role';
 import { PromotionsComponent } from './components/promotions/promotions.component';
 import { CreateOrderComponent } from './components/order/create-order/create-order.component';
+import { PricelistComponent } from './components/pricelist/pricelist.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'createOrder',
     component: CreateOrderComponent
+  },
+  {
+    path: 'updatePricelist',
+    component: PricelistComponent
   }
 ];
 

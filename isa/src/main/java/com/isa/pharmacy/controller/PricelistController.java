@@ -42,4 +42,9 @@ public class PricelistController {
 
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
+
+    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deletePrice() {
+        return null;
+    }
 }

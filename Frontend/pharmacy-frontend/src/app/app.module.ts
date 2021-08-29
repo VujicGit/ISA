@@ -30,6 +30,7 @@ import { ErrorInterceptor } from './security/error-interceptor';
 import { DatePipe } from '@angular/common';
 import { PromotionsComponent } from './components/promotions/promotions.component';
 import { CreateOrderComponent } from './components/order/create-order/create-order.component';
+import { PricelistComponent } from './components/pricelist/pricelist.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CreateOrderComponent } from './components/order/create-order/create-ord
     DermatologistsComponent,
     LoginComponent,
     PromotionsComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    PricelistComponent
   ],
   imports: [
     BrowserModule,
