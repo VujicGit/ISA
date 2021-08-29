@@ -13,6 +13,7 @@ import com.isa.pharmacy.service.interfaces.IWarehouseService;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class PricelistService implements IPricelistService {
         prices.add(newPrice);
         return pricelistRepository.save(pricelist);
     }
+
 
     private void removeEqualsByPrice(List<Price> prices, Price newPrice) {
         Price equalByDate = getEqualsByPrice(prices, newPrice);
