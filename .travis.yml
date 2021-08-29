@@ -4,6 +4,9 @@ addons:
     token:
       secure: "**************************" # encrypted value of your token
 
+before_install:
+  - chmod +x mvnw
+
 script:
   - ./isa/mvnw clean install -DskipTests=false -B
   - ./isa/mvnw sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=$ORG_NAME -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
