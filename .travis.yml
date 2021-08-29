@@ -6,4 +6,4 @@ addons:
 
 script:
   - ./isa/mvnw clean install -DskipTests=false -B
-  - ./isa/mvnw sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=vujicgit -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+  - ./isa/mvnw sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=$ORG_NAME -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
