@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
+import { deepStrictEqual } from 'assert';
 import { Drug } from 'src/app/model/drug/drug';
 import { Price } from 'src/app/model/pricelist/price';
 import { UpdatePrice } from 'src/app/model/pricelist/update-price';
@@ -27,7 +28,7 @@ export class PricelistComponent implements OnInit {
 
   prices: Price[];
 
-  displayedColumns: String[] = ["drugName", "drugCode", "price", "startPeriod", "endPeriod", '#'];
+  displayedColumns: String[] = ["drugName", "drugCode", "price", "startPeriod", "endPeriod"];
 
   pricelistForm: FormGroup;
 
@@ -81,27 +82,18 @@ export class PricelistComponent implements OnInit {
   }
 
   updatePrice() {
-    /*let drugName = this.getDrugName(this.drugId);
-    let drugCode = this.getDrugCode(this.drugId);
-    if(!this.exists(this.drugId)) {
-      let price = new Price(drugName, drugCode, this.drugId, this.price, this.startDate, this.endDate);
-      this.prices.push(price);
-    } else {
-      this.updateRow(this.drugId, this.price);
-    }    
-    
-    this.table.renderRows();  */
+  
 
     let price = Number(this.price);
+    this.formatDate();
     let updatePrice = new UpdatePrice(this.drugId, price, this.startDate, this.endDate);
     this.pricelistService.updatePrice(updatePrice).subscribe(
       success => {
-        console.log("Usao u success")
         let drugName = this.getDrugName(this.drugId);
         let drugCode = this.getDrugCode(this.drugId);
-        if(!this.exists(this.drugId)) {
+        let price = new Price(drugName, drugCode, this.drugId, this.price, this.startDate, this.endDate);
+        if(!this.exists(price)) {
           
-          let price = new Price(drugName, drugCode, this.drugId, this.price, this.startDate, this.endDate);
           this.prices.push(price);
         } else {
           this.updateRow(this.drugId, this.price);
@@ -129,10 +121,14 @@ export class PricelistComponent implements OnInit {
     return this.pricelistForm.get('price').valid;
   }
 
-  exists(drugId: number) : boolean {
-    let val = this.prices.some(element => element.drugId === drugId);
+  exists(price: Price) : boolean {
+    let val = this.prices.some(element => element.equal(price));
     console.log(val);
     return val
+  }
+
+  equals() : boolean{
+    return false;
   }
 
   updateRow(drugId: number, price: number) {
@@ -155,5 +151,16 @@ export class PricelistComponent implements OnInit {
     } else {
       this.isValid = false;
     }
+  }
+
+  formatDate() {
+    let offset = 7200000;
+    let startMillis = this.startDate.getTime();
+    startMillis = startMillis + offset;
+    this.startDate = new Date(startMillis);
+
+    let endMillis = this.endDate.getTime();
+    endMillis = endMillis + offset;
+    this.endDate = new Date(endMillis);
   }
 }
