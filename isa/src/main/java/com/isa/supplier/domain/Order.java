@@ -40,7 +40,7 @@ public class Order {
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     private List<OrderedDrug> orderedDrug;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "order")
     private List<Offer> offers;
 
     @ManyToOne(fetch = FetchType.LAZY)

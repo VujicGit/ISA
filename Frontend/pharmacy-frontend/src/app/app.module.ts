@@ -33,6 +33,7 @@ import { CreateOrderComponent } from './components/order/create-order/create-ord
 import { PricelistComponent } from './components/pricelist/pricelist.component';
 import { OrdersComponent } from './components/order/orders/orders.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { OffersDialogComponent } from './components/order/orders/offers-dialog/offers-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {MatRadioModule} from '@angular/material/radio';
     PromotionsComponent,
     CreateOrderComponent,
     PricelistComponent,
-    OrdersComponent
+    OrdersComponent,
+    OffersDialogComponent
   ],
   imports: [
     BrowserModule,

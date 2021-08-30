@@ -20,4 +20,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "where o.pharmacy.id = ?1 and o.status = ?2")
     List<Order> filterByStatus(Long pharmacyId, OrderStatus status);
 
+    @Query(value = "select distinct o from Order o " +
+            "left join fetch o.pharmacyAdministrator " +
+            "where o.id = ?1")
+    Order findByIdWithPharmacyAdministrator(Long orderId);
+
 }

@@ -26,6 +26,10 @@
                 <th mat-header-cell *matHeaderCellDef> Status </th>
                 <td mat-cell *matCellDef="let element">{{element.status}}</td>
               </ng-container>
+              <ng-container matColumnDef="showOffers">
+                <th mat-header-cell *matHeaderCellDef> Show offers </th>
+                <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary" (click)="openOffersDialog(element.id)">Remove</button></td>
+              </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>        
           </table>

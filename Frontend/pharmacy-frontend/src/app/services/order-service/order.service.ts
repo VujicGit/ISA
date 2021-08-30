@@ -25,5 +25,7 @@ export class OrderService {
   filter(status: OrderStatus) : Observable<Order[]> {
     return this.http.get<Order[]>(`${environment.baseUrl}/${environment.order}/${status}`);
   }
+
+  findAllOffers(orderId: number) {}
   
  }

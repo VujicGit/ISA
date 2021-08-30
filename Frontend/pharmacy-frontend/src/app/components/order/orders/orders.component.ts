@@ -1,8 +1,10 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Order } from 'src/app/model/order/order';
 import { OrderStatus } from 'src/app/model/order/status';
 import { OrderService } from 'src/app/services/order-service/order.service';
+import { OffersDialogComponent } from './offers-dialog/offers-dialog.component';
 
 @Component({
   selector: 'app-orders',
@@ -16,9 +18,9 @@ export class OrdersComponent implements OnInit {
 
   selectedFilter: OrderStatus;
 
-  displayedColumns: string[] = ['createdBy', 'createdAt', 'dueDate', 'status'];
+  displayedColumns: string[] = ['createdBy', 'createdAt', 'dueDate', 'status', 'showOffers'];
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log(this.selectedFilter);
@@ -54,6 +56,16 @@ export class OrdersComponent implements OnInit {
         
       }
     )
+  }
+
+  openOffersDialog(orderId: number) {
+    this.dialog.open(OffersDialogComponent, {
+      width: 'fit-content',
+      minWidth:'35vw',
+      height: 'fit-content',
+      maxHeight: '50vw',
+      data: orderId,
+    })
   }
 
 }

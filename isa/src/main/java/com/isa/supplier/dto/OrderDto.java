@@ -19,6 +19,7 @@ public class OrderDto {
     @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate dueDate;
     private OrderStatus status;
+    private Long id;
 
     public OrderDto() {
     }
@@ -29,14 +30,16 @@ public class OrderDto {
         this.dueDate = order.getDueDate();
         this.status = order.getStatus();
         this.orderedDrugs = order.getOrderedDrug().stream().map(OrderedDrugDto::new).collect(Collectors.toList());
+        this.id = order.getId();
     }
 
-    public OrderDto(List<OrderedDrugDto> orderedDrugs, String createdBy, LocalDate createdAt, LocalDate dueDate, OrderStatus status) {
+    public OrderDto(List<OrderedDrugDto> orderedDrugs, String createdBy, LocalDate createdAt, LocalDate dueDate, OrderStatus status, Long id) {
         this.orderedDrugs = orderedDrugs;
         this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.dueDate = dueDate;
         this.status = status;
+        this.id = id;
     }
 
     public List<OrderedDrugDto> getOrderedDrugs() {
@@ -59,6 +62,10 @@ public class OrderDto {
         return status;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setOrderedDrugs(List<OrderedDrugDto> orderedDrugs) {
         this.orderedDrugs = orderedDrugs;
     }
@@ -79,6 +86,8 @@ public class OrderDto {
         this.status = status;
     }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
 

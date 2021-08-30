@@ -7,12 +7,14 @@ insert into location (latitude, longitude) values (45.24915928867009, 19.8428403
 insert into location (latitude, longitude) values (45.24993937456046, 19.84684437097689);
 insert into location (latitude, longitude) values (45.250312839697166, 19.84671996728179);
 insert into location (latitude, longitude) values (45.816407202210186, 19.640509353806817);
+insert into location (latitude, longitude) values (45.25038975236708, 19.84697265563544);
 
 insert into address (number, street, city_id, location_id) values ('8', 'Maksima Gorkog', 1, 1);
 insert into address (number, street, city_id, location_id) values ('9', 'Maksima Gorkog', 1, 2);
 insert into address (number, street, city_id, location_id) values ('10', 'Maksima Gorkog', 1, 3);
 insert into address (number, street, city_id, location_id) values ('11', 'Maksima Gorkog', 1, 4);
 insert into address (number, street, city_id, location_id) values ('12', 'Maksima Gorkog', 1, 5);
+insert into address (number, street, city_id, location_id) values ('13', 'Maksima Gorkog', 1, 6)
 
 insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
 
@@ -28,6 +30,9 @@ insert into users (email, gender, identification_number, name, password, passwor
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
     values ('bojanvjc@gmail.com', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5);
 
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
+    values ('bojanvjc1@gmail.com', 0, '12129960328', 'Igor', '$2a$10$VV9ooBhZ4qRowDIOEmjUxuTJdK5rBoWed59p.L92Awp/Bwgbcd54O', false, '065/313222', 4, 'Jovanovic', false, 6);
+
 insert into employee (id) values (1);
 insert into employee (id) values (2);
 
@@ -40,6 +45,8 @@ insert into pharmacy_administrator (id, pharmacy_id) values (3, 1);
 insert into pharmacys_dermatolostist (pharmacy_id, dermatologist_id) values (1, 1);
 
 insert into patient (penalties, id) values (0, 4);
+
+insert into supplier (id) values (5);
 
 insert into ingredient (name) values ('ibuprofen');
 

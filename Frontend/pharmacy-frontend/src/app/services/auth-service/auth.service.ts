@@ -23,7 +23,6 @@ export class AuthService {
   login(loginDto: Login) {
     return this.http.post<AuthenticatedUser>(`${environment.baseUrl}/${environment.auth}/${environment.login}`, loginDto)
     .pipe(map(response=> {
-      console.log("KURCINAAAAAAA");
       localStorage.setItem('currentUser', JSON.stringify(response));
       this.currentUserSubject.next(response);
       return response;
