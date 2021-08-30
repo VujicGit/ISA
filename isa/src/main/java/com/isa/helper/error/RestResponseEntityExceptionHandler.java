@@ -1,6 +1,8 @@
 package com.isa.helper.error;
 
 import com.isa.pharmacy.exception.PriceTimeException;
+import com.isa.supplier.exception.AdminException;
+import com.isa.supplier.exception.OrderNotFoundException;
 import com.isa.user.exception.InvalidCredentialsException;
 import org.postgresql.util.PSQLException;
 import org.springframework.http.HttpStatus;
@@ -49,6 +51,16 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value = {InvalidCredentialsException.class})
     protected ResponseEntity<?> handle5(InvalidCredentialsException ex) {
         return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(value = {OrderNotFoundException.class})
+    protected ResponseEntity<?> handle6(OrderNotFoundException ex) {
+        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {AdminException.class})
+    protected ResponseEntity<?> handle7(AdminException ex) {
+        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
 }

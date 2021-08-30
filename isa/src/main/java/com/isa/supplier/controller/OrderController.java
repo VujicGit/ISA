@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -47,21 +48,24 @@ public class OrderController {
         return new ResponseEntity<>(order.getId(), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ROLE_PHARMACY_ADMIN')")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAllByPharmacyId() {
 
-        Long pharmacyId = 1L; //get from jwt
+        PharmacyAdministrator pharmacyAdministrator = (PharmacyAdministrator) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long pharmacyId = pharmacyAdministrator.getPharmacyId();
         List<Order> orders = orderService.findAllByPharmacyId(pharmacyId);
         List<OrderDto> dtos = OrderMapper.mapOrdersToOrderDtos(orders);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_PHARMACY_ADMIN')")
     @GetMapping(value = "/{status}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> filterByStatus(@PathVariable Integer status) {
+    public ResponseEntity<?> filterByStatus(@PathVariable OrderStatus status) {
 
-        OrderStatus orderStatus = OrderStatus.intConverter(status);
-        Long pharmacyId = 1L; //get from jwt
-        List<Order> orders = orderService.filterByStatus(pharmacyId, orderStatus);
+        PharmacyAdministrator pharmacyAdministrator = (PharmacyAdministrator) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long pharmacyId = pharmacyAdministrator.getPharmacyId();
+        List<Order> orders = orderService.filterByStatus(pharmacyId, status);
         List<OrderDto> dtos = OrderMapper.mapOrdersToOrderDtos(orders);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }

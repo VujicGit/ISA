@@ -16,7 +16,8 @@ export const environment = {
   drug: 'drug',
   basic: 'basic',
   order: 'order',
-  pricelist: 'pricelist'
+  pricelist: 'pricelist',
+  offer: 'offer'
 };
 
 /*
