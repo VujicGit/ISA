@@ -1,5 +1,6 @@
 package com.isa.supplier.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.supplier.domain.Order;
 import com.isa.supplier.domain.enumeration.OrderStatus;
 import org.apache.tomcat.jni.Local;
@@ -13,7 +14,9 @@ public class OrderDto {
 
     private List<OrderedDrugDto> orderedDrugs;
     private String createdBy;
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate createdAt;
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate dueDate;
     private OrderStatus status;
 
@@ -75,4 +78,7 @@ public class OrderDto {
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
+
+
 }
+

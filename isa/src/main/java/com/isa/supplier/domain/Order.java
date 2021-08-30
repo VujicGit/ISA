@@ -31,7 +31,11 @@ public class Order {
     private OrderStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "pharmacy_administrator_id")
     private PharmacyAdministrator pharmacyAdministrator;
+
+    @Column(name = "pharmacy_administrator_id", insertable = false, updatable = false)
+    private Long pharmacyAdministratorId;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     private List<OrderedDrug> orderedDrug;

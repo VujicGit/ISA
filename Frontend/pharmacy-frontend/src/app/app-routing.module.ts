@@ -13,6 +13,8 @@ import { Role } from './model/user/role';
 import { PromotionsComponent } from './components/promotions/promotions.component';
 import { CreateOrderComponent } from './components/order/create-order/create-order.component';
 import { PricelistComponent } from './components/pricelist/pricelist.component';
+import { Order } from './model/order/order';
+import { OrdersComponent } from './components/order/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,10 @@ const routes: Routes = [
   {
     path: 'updatePricelist',
     component: PricelistComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent
   }
 ];
 

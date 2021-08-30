@@ -4,6 +4,8 @@ import com.isa.supplier.domain.enumeration.OfferStatus;
 import com.isa.user.domain.Supplier;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -16,12 +18,15 @@ public class Offer {
     private OfferStatus status;
 
     @Column
+    @NotNull(message = "Price can not be null")
     private double price;
 
     @Column
-    private Date date;
+    @NotNull(message = "date can not be null")
+    private LocalDateTime date;
 
     @Column
+    @NotNull(message = "due date can not be null")
     private Date dueDate;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
@@ -32,7 +37,7 @@ public class Offer {
 
     public Offer() {}
 
-    public Offer(Long id, OfferStatus status, double price, Date date, Date dueDate, Order order, Supplier supplier) {
+    public Offer(Long id, OfferStatus status, double price, LocalDateTime date, Date dueDate, Order order, Supplier supplier) {
         this.id = id;
         this.status = status;
         this.price = price;
@@ -66,11 +71,11 @@ public class Offer {
         this.price = price;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

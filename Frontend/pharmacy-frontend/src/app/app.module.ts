@@ -31,6 +31,8 @@ import { DatePipe } from '@angular/common';
 import { PromotionsComponent } from './components/promotions/promotions.component';
 import { CreateOrderComponent } from './components/order/create-order/create-order.component';
 import { PricelistComponent } from './components/pricelist/pricelist.component';
+import { OrdersComponent } from './components/order/orders/orders.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { PricelistComponent } from './components/pricelist/pricelist.component';
     LoginComponent,
     PromotionsComponent,
     CreateOrderComponent,
-    PricelistComponent
+    PricelistComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import { PricelistComponent } from './components/pricelist/pricelist.component';
     MatButtonModule,
     MatTableModule,
     MatExpansionModule,
+    MatRadioModule,
     ToastrModule.forRoot()
   ],
   providers: [

@@ -1,0 +1,18 @@
+import { OrderedDrug } from "./ordered-drug";
+import { OrderStatus } from "./status";
+
+export class Order {
+    orderedDrugs: OrderedDrug[];
+    createdBy: String;
+    createdAt: Date;
+    dueDate: Date;
+    status: OrderStatus;
+
+    constructor(orderedDrugs: OrderedDrug[], createdBy: String, createdAt: Date, dueDate: Date, status: OrderStatus) {
+        this.orderedDrugs = orderedDrugs;
+        this.createdBy = createdBy;
+        this.createdAt = createdAt;
+        this.dueDate = dueDate;
+        this.status = status;
+    }
+}
