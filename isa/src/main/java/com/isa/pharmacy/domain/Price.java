@@ -81,7 +81,10 @@ public class Price {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Price priceObj = (Price) o;
-        return drug.equals(priceObj.drug) && priceTime.equals(priceObj.priceTime) && price.equals(priceObj.price);
+        return drug.equals(priceObj.drug)
+                && priceTime.getStart().toLocalDate().equals(priceObj.priceTime.getStart().toLocalDate())
+                && priceTime.getEnd().toLocalDate().equals(priceObj.priceTime.getEnd().toLocalDate())
+                && price.equals(priceObj.price);
 
     }
 

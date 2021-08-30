@@ -1,5 +1,6 @@
 package com.isa.pharmacy.controller;
 
+import com.isa.helper.http.Message;
 import com.isa.pharmacy.domain.Pricelist;
 import com.isa.pharmacy.dto.AddPriceDto;
 import com.isa.pharmacy.dto.PriceDto;
@@ -37,19 +38,20 @@ public class PricelistController {
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_PHARMACY_ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addPrice(@RequestBody AddPriceDto priceDto) {
-        Long pharmacyId = 1L;
+
+        PharmacyAdministrator pharmacyAdministrator = (PharmacyAdministrator) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Long pharmacyId = pharmacyAdministrator.getPharmacyId();
 
         Pricelist pricelist = pricelistService.addPrice(pharmacyId, priceDto);
         if(pricelist == null)
-            return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Message("Error"), HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+        return new ResponseEntity<>(new Message("Success"), HttpStatus.OK);
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deletePrice() {
-        return null;
-    }
+
 }

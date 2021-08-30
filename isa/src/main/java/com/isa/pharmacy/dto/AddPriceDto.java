@@ -1,13 +1,19 @@
 package com.isa.pharmacy.dto;
 
 import com.isa.pharmacy.exception.PriceTimeException;
+
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class AddPriceDto {
 
+    @NotNull
     private Long drugId;
+    @NotNull
     private Double price;
+    @NotNull
     private LocalDateTime startPeriod;
+    @NotNull
     private LocalDateTime endPeriod;
 
     public AddPriceDto() {
