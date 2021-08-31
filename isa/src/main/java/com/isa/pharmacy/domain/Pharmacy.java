@@ -4,6 +4,7 @@ package com.isa.pharmacy.domain;
 import com.isa.user.domain.Address;
 import com.isa.user.domain.Dermatologist;
 import com.isa.user.domain.Pharmacist;
+import com.isa.user.domain.Shift;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -40,6 +41,10 @@ public class Pharmacy {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Pricelist priceList;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "pharmacy_id")
+    private List<Shift> shifts;
 
 
     public Pharmacy(Long id, String description) {

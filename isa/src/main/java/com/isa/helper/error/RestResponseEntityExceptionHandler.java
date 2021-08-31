@@ -3,6 +3,7 @@ package com.isa.helper.error;
 import com.isa.pharmacy.exception.PriceTimeException;
 import com.isa.supplier.exception.AdminException;
 import com.isa.supplier.exception.OrderNotFoundException;
+import com.isa.supplier.exception.ShiftAlreadyExistsException;
 import com.isa.user.exception.InvalidCredentialsException;
 import org.postgresql.util.PSQLException;
 import org.springframework.http.HttpStatus;
@@ -60,6 +61,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(value = {AdminException.class})
     protected ResponseEntity<?> handle7(AdminException ex) {
+        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {ShiftAlreadyExistsException.class})
+    protected ResponseEntity<?> handle8(ShiftAlreadyExistsException ex) {
         return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
