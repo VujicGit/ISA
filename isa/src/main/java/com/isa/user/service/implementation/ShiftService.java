@@ -3,18 +3,16 @@ package com.isa.user.service.implementation;
 import com.isa.appointment.domain.TimePeriod;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.repository.PharmacyRepository;
-import com.isa.supplier.exception.ShiftAlreadyExistsException;
+import com.isa.user.exception.ShiftAlreadyExistsException;
 import com.isa.user.domain.Dermatologist;
-import com.isa.user.domain.Employee;
 import com.isa.user.domain.Shift;
 import com.isa.user.dto.ShiftDto;
+import com.isa.user.exception.ShiftsOverlappingException;
 import com.isa.user.repository.DermatologistRepository;
-import com.isa.user.repository.EmployeeRepository;
 import com.isa.user.repository.ShiftRepository;
 import com.isa.user.service.interfaces.IShiftService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,9 +20,9 @@ import java.util.List;
 @Service
 public class ShiftService implements IShiftService {
 
-    private ShiftRepository shiftRepository;
-    private DermatologistRepository dermatologistRepository;
-    private PharmacyRepository pharmacyRepository;
+    private final ShiftRepository shiftRepository;
+    private final DermatologistRepository dermatologistRepository;
+    private final PharmacyRepository pharmacyRepository;
 
     @Autowired
     public ShiftService(ShiftRepository shiftRepository, DermatologistRepository dermatologistRepository, PharmacyRepository pharmacyRepository) {
@@ -39,13 +37,45 @@ public class ShiftService implements IShiftService {
     }
 
     @Override
+    public List<Shift> deleteShiftsByEmployeeId(Long employeeId) {
+        return null;
+    }
+
+    @Override
+    public List<Shift> deleteShiftsForEmployee(Long dermatologistId, Long pharmacyId) {
+        List<Shift> shifts = getAllByEmployeeIdAndPharmacyId(dermatologistId, pharmacyId);
+        shiftRepository.deleteAll(shifts);
+        return null;
+    }
+
+    @Override
     public List<Shift> getAllByEmployeeIdAndPharmacyId(Long employeeId, Long pharmacyId) {
         return shiftRepository.getAllByEmployeeIdAndPharmacyId(employeeId, pharmacyId);
     }
 
     @Override
     public Shift createForDermatologist(ShiftDto shiftDto) {
-        Dermatologist dermatologist = dermatologistRepository.findByPharmacyId(shiftDto.getPharmacyId()).orElseThrow();
+        Dermatologist dermatologist = dermatologistRepository.findByIdAndPharmacyId(shiftDto.getPharmacyId(), shiftDto.getEmployeeId()).orElseThrow();
+        return createShift(dermatologist, shiftDto);
+    }
+
+    @Override
+    public void createForDermatologist(Long dermatologistId, Long pharmacyId,  List<ShiftDto> shiftDtos) {
+        Dermatologist dermatologist = dermatologistRepository.findByIdAndPharmacyId(pharmacyId, dermatologistId).orElseThrow();
+    }
+
+    @Override
+    public Shift createForDermatologist(Dermatologist dermatologist, ShiftDto shiftDto) {
+        return createShift(dermatologist, shiftDto);
+    }
+
+    @Override
+    public void createForDermatologist(Dermatologist dermatologist, List<ShiftDto> shifts) {
+        shifts.forEach(shiftDto -> createShift(dermatologist, shiftDto));
+    }
+
+    @NotNull
+    private Shift createShift(Dermatologist dermatologist, ShiftDto shiftDto) {
         Pharmacy pharmacy = pharmacyRepository.findById(shiftDto.getPharmacyId()).orElseThrow();
 
         TimePeriod duration = new TimePeriod(shiftDto.getStart(), shiftDto.getEnd());
@@ -54,10 +84,9 @@ public class ShiftService implements IShiftService {
         shift.setEmployee(dermatologist);
         shift.setPharmacy(pharmacy);
 
-
-        if(shiftRepository.exists(shift)) throw new ShiftAlreadyExistsException("Shift already exists");
-        if(isOverLapping(shift, shift.getEmployee().getId())) throw new ShiftAlreadyExistsException("Shift already exists");
-
+        if (shiftRepository.exists(shift)) throw new ShiftAlreadyExistsException(duration);
+        if (isOverLapping(shift, shift.getEmployee().getId()))
+            throw new ShiftsOverlappingException(duration);
         return shiftRepository.save(shift);
     }
 
@@ -66,10 +95,8 @@ public class ShiftService implements IShiftService {
         if(shifts.size() == 0) return false;
         for(Shift it : shifts) {
 
-            boolean isBefore = shift.getDuration().getStart().isBefore(it.getDuration().getStart())
-                    && shift.getDuration().getEnd().isBefore(it.getDuration().getStart());
-            boolean isAfter = shift.getDuration().getStart().isAfter(it.getDuration().getEnd())
-                    && shift.getDuration().getEnd().isAfter(it.getDuration().getEnd());
+            boolean isBefore = isShiftBefore(shift, it);
+            boolean isAfter = isShiftAfter(shift, it);
 
             if(!isAfter && !isBefore) {
                 return true;
@@ -77,5 +104,15 @@ public class ShiftService implements IShiftService {
         }
         return false;
 
+    }
+
+    private boolean isShiftAfter(Shift shift, Shift it) {
+        return shift.getDuration().getStart().isAfter(it.getDuration().getEnd())
+                && shift.getDuration().getEnd().isAfter(it.getDuration().getEnd());
+    }
+
+    private boolean isShiftBefore(Shift shift, Shift it) {
+        return shift.getDuration().getStart().isBefore(it.getDuration().getStart())
+                && shift.getDuration().getEnd().isBefore(it.getDuration().getStart());
     }
 }

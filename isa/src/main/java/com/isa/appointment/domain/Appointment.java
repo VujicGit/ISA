@@ -4,6 +4,7 @@ import com.isa.appointment.domain.enums.AppointmentStatus;
 import com.isa.appointment.domain.enums.AppointmentType;
 import com.isa.drug.domain.Allergy;
 import com.isa.patient.domain.Therapy;
+import com.isa.pharmacy.domain.Pharmacy;
 
 import javax.persistence.*;
 
@@ -37,7 +38,9 @@ public class Appointment {
 
     //TODO Add patient
 
-    //TODO Add pharmacy
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "pharmacy_id")
+    private Pharmacy pharmacy;
 
     public Long getId() {
         return id;
@@ -74,4 +77,12 @@ public class Appointment {
     public Therapy getThreapy() { return threapy; }
 
     public void setThreapy(Therapy threapy) { this.threapy = threapy; }
+
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+    }
 }

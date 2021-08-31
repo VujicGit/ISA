@@ -24,7 +24,12 @@ public interface DermatologistRepository extends JpaRepository<Dermatologist, Lo
 
     @Query(value = "select distinct d from Dermatologist d " +
             "left join fetch d.pharmacies p " +
-            "where p.id = ?1")
-    Optional<Dermatologist> findByPharmacyId(Long pharmacyId);
+            "where p.id = ?1 and d.id = ?2")
+    Optional<Dermatologist> findByIdAndPharmacyId(Long pharmacyId, Long dermatologistId);
+
+    @Query(value = "select distinct d from Dermatologist d " +
+            "left join fetch d.pharmacies p " +
+            "where d.id = ?1")
+    Optional<Dermatologist> findByIdWithPharmacies(Long id);
 }
 

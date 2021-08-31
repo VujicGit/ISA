@@ -42,7 +42,7 @@ insert into pharmacist (id, pharmacy_id, grade) values (2, 1, 8.2);
 
 insert into pharmacy_administrator (id, pharmacy_id) values (3, 1);
 
-insert into pharmacys_dermatolostist (pharmacy_id, dermatologist_id) values (1, 1);
+--insert into pharmacys_dermatolostist (pharmacy_id, dermatologist_id) values (1, 1);
 
 insert into patient (penalties, id) values (0, 4);
 
