@@ -19,7 +19,7 @@ insert into address (number, street, city_id, location_id) values ('13', 'Maksim
 insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('user1@gmail.com', 0, '25029920098', 'Marko', 'markic', false, '065/322322', 3, 'Markovic', false, 1);
+    values ('bojanvjc1@gmail.com', 0, '25029920098', 'Marko', 'markic', false, '065/322322', 3, 'Markovic', false, 1);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
     values ('user2@gmail.com', 0, '22039920028', 'Petar', 'pera', false, '065/323232', 2, 'Petrovic', false, 3);
@@ -75,6 +75,7 @@ insert into subscription (pharmacy_id) values (1);
 
 insert into subscription_patient (subscription_id, patient_id) values (1, 4);
 
+insert into dermatologist_vacation_request (admin_response, vacation_start, vacation_end, status, dermatologist_id, pharmacy_id) values (null, '2021-08-20T00:00:00', '2021-08-20T00:00:00', 0, 1, 1);
 insert into authority (id, name) values (1, 'ROLE_PHARMACY_ADMIN');
 
 insert into user_authority (user_id, authority_id) values (3, 1);

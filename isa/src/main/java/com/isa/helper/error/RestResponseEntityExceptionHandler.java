@@ -2,6 +2,7 @@ package com.isa.helper.error;
 
 import com.isa.appointment.exception.ExaminationException;
 import com.isa.pharmacy.exception.PriceTimeException;
+import com.isa.user.exception.VacationRequestException;
 import com.isa.supplier.exception.AdminException;
 import com.isa.supplier.exception.OrderNotFoundException;
 import com.isa.user.exception.AlreadyEmployedException;
@@ -50,6 +51,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(value = {PriceTimeException.class})
     protected ResponseEntity<?> handle4(PriceTimeException ex) {
+        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {VacationRequestException.class})
+    protected ResponseEntity<?> handle5(VacationRequestException ex) {
         return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
