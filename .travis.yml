@@ -1,0 +1,16 @@
+sudo: required
+language: java
+jdk: openjdk11
+
+addons:
+  sonarcloud: 
+  organization: "vujicgit"
+  token: $SONAR_TOKEN
+
+
+before_install:
+  - cd isa
+  - chmod +x mvnw
+
+script:
+  - ./mvnw sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=$ORG_NAME -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN

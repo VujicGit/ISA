@@ -7,12 +7,14 @@ insert into location (latitude, longitude) values (45.24915928867009, 19.8428403
 insert into location (latitude, longitude) values (45.24993937456046, 19.84684437097689);
 insert into location (latitude, longitude) values (45.250312839697166, 19.84671996728179);
 insert into location (latitude, longitude) values (45.816407202210186, 19.640509353806817);
+insert into location (latitude, longitude) values (45.25038975236708, 19.84697265563544);
 
 insert into address (number, street, city_id, location_id) values ('8', 'Maksima Gorkog', 1, 1);
 insert into address (number, street, city_id, location_id) values ('9', 'Maksima Gorkog', 1, 2);
 insert into address (number, street, city_id, location_id) values ('10', 'Maksima Gorkog', 1, 3);
 insert into address (number, street, city_id, location_id) values ('11', 'Maksima Gorkog', 1, 4);
 insert into address (number, street, city_id, location_id) values ('12', 'Maksima Gorkog', 1, 5);
+insert into address (number, street, city_id, location_id) values ('13', 'Maksima Gorkog', 1, 6);
 
 insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
 
@@ -23,10 +25,13 @@ insert into users (email, gender, identification_number, name, password, passwor
     values ('user2@gmail.com', 0, '22039920028', 'Petar', 'pera', false, '065/323232', 2, 'Petrovic', false, 3);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('user3@gmail.com', 0, '22049910028', 'Isak', 'ajzak', false, '065/323212', 1, 'Isakovic', false, 4);
+    values ('user3@gmail.com', 0, '22049910028', 'Isak', '$2a$10$yiJVwyT4eF/UboEM9oPpYOyIou86mFPnVvYC8YtgFGcy76BV9wJQy', false, '065/323212', 1, 'Isakovic', false, 4);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
     values ('bojanvjc@gmail.com', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5);
+
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
+    values ('bojanvjc1@gmail.com', 0, '12129960328', 'Igor', '$2a$10$VV9ooBhZ4qRowDIOEmjUxuTJdK5rBoWed59p.L92Awp/Bwgbcd54O', false, '065/313222', 4, 'Jovanovic', false, 6);
 
 insert into employee (id) values (1);
 insert into employee (id) values (2);
@@ -37,9 +42,11 @@ insert into pharmacist (id, pharmacy_id, grade) values (2, 1, 8.2);
 
 insert into pharmacy_administrator (id, pharmacy_id) values (3, 1);
 
-insert into pharmacys_dermatolostist (pharmacy_id, dermatologist_id) values (1, 1);
+--insert into dermatologist_pharmacies (pharmacy_id, dermatologist_id) values (1, 1);
 
 insert into patient (penalties, id) values (0, 4);
+
+insert into supplier (id) values (5);
 
 insert into ingredient (name) values ('ibuprofen');
 
@@ -69,3 +76,6 @@ insert into subscription (pharmacy_id) values (1);
 insert into subscription_patient (subscription_id, patient_id) values (1, 4);
 
 insert into dermatologist_vacation_request (admin_response, vacation_start, vacation_end, status, dermatologist_id, pharmacy_id) values (null, '2021-08-20T00:00:00', '2021-08-20T00:00:00', 0, 1, 1);
+insert into authority (id, name) values (1, 'ROLE_PHARMACY_ADMIN');
+
+insert into user_authority (user_id, authority_id) values (3, 1);

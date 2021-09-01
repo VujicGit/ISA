@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.mat-elevation-z8 {
+    min-width: 50vw;
+    max-width: 50vw;
+}
+
+.form-field {
+    width: 30vw;
+    margin-bottom: 20px;
+}

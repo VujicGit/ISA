@@ -1,8 +1,8 @@
 package com.isa.pharmacy.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.pharmacy.domain.Price;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class PriceDto {
@@ -11,7 +11,9 @@ public class PriceDto {
     private String drugCode;
     private Long drugId;
     private Double price;
+    @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
     private LocalDateTime startPeriod;
+    @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
     private LocalDateTime endPeriod;
 
     public PriceDto() {

@@ -1,0 +1,25 @@
+.row {
+    width: 50vw;
+    min-width: 50vw;
+    
+}
+.col {
+    width: 50vw;
+    min-width: 50vw;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.table-row{
+    margin-top: 20px;
+    justify-content: center;
+    
+}
+
+table {
+    width: 60%;
+}
