@@ -1,5 +1,6 @@
 package com.isa.helper.error;
 
+import com.isa.appointment.exception.ExaminationException;
 import com.isa.pharmacy.exception.PriceTimeException;
 import com.isa.supplier.exception.AdminException;
 import com.isa.supplier.exception.OrderNotFoundException;
@@ -86,5 +87,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     protected ResponseEntity<?> handleAuthenticationException(AuthenticationException ex) {
         return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = {ExaminationException.class})
+    protected ResponseEntity<?> handleExaminationException(ExaminationException ex) {
+        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
 
 }

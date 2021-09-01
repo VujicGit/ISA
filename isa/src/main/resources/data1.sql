@@ -14,7 +14,7 @@ insert into address (number, street, city_id, location_id) values ('9', 'Maksima
 insert into address (number, street, city_id, location_id) values ('10', 'Maksima Gorkog', 1, 3);
 insert into address (number, street, city_id, location_id) values ('11', 'Maksima Gorkog', 1, 4);
 insert into address (number, street, city_id, location_id) values ('12', 'Maksima Gorkog', 1, 5);
-insert into address (number, street, city_id, location_id) values ('13', 'Maksima Gorkog', 1, 6)
+insert into address (number, street, city_id, location_id) values ('13', 'Maksima Gorkog', 1, 6);
 
 insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
 
@@ -42,7 +42,7 @@ insert into pharmacist (id, pharmacy_id, grade) values (2, 1, 8.2);
 
 insert into pharmacy_administrator (id, pharmacy_id) values (3, 1);
 
---insert into pharmacys_dermatolostist (pharmacy_id, dermatologist_id) values (1, 1);
+--insert into dermatologist_pharmacies (pharmacy_id, dermatologist_id) values (1, 1);
 
 insert into patient (penalties, id) values (0, 4);
 
