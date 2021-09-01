@@ -2,11 +2,19 @@ package com.isa.user.dto;
 
 import com.isa.user.domain.enumeration.VacationRequestStatus;
 
+import javax.validation.constraints.NotNull;
+
 public class ProcessVacationRequestDto {
 
+    @NotNull(message = "Vacation request id can not be null")
     private Long id;
+    @NotNull(message = "Vacation request status can not be null")
     private VacationRequestStatus status;
+    @NotNull(message = "Message can not be null")
     private String message;
+
+    public ProcessVacationRequestDto() {
+    }
 
     public ProcessVacationRequestDto(Long id, VacationRequestStatus status, String message) {
         this.id = id;

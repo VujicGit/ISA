@@ -32,10 +32,12 @@ public class DermatologistVacationRequestService implements IDermatologistVacati
     }
 
     @Override
-    public DermatologistVacationRequest process(Long id, VacationRequestStatus status, String message) {
+    public DermatologistVacationRequest process(Long id, VacationRequestStatus status, String message, Long pharmacyId) {
 
-        DermatologistVacationRequest vacationRequest = dermatologistVacationRequestRepository.getDermatologistVacationRequestById(id);
-        if(vacationRequest == null) return null;
+        DermatologistVacationRequest vacationRequest = dermatologistVacationRequestRepository
+                .getDermatologistVacationRequestWithDermatologist(id, pharmacyId)
+                .orElseThrow(() -> new VacationRequestException("Vacation request does not exist"));
+
 
         if(isProcessed(vacationRequest)) throw new VacationRequestException("Vacation request is already processed");
 
@@ -96,7 +98,7 @@ public class DermatologistVacationRequestService implements IDermatologistVacati
         String startString = formatDate(start);
         String endString = formatDate(end);
         String status = formatStatus(vacationRequest.getStatus());
-        
+
         StringBuilder message = new StringBuilder("Your vacation request from " + startString + " to " + endString + " is " + status);
         if(vacationRequest.getStatus() == VacationRequestStatus.REJECTED)
             message.append("\nAdmin response: ").append(vacationRequest.getAdminResponse());

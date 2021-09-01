@@ -1,5 +1,6 @@
 package com.isa.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.user.domain.DermatologistVacationRequest;
 import com.isa.user.domain.enumeration.VacationRequestStatus;
 
@@ -7,7 +8,9 @@ import java.time.LocalDateTime;
 
 public class VacationRequestDto {
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime start;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime end;
     private VacationRequestStatus status;
     private String name;

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IDermatologistVacationRequestService {
 
-    DermatologistVacationRequest process(Long id, VacationRequestStatus status, String message);
+    DermatologistVacationRequest process(Long id, VacationRequestStatus status, String message, Long pharmacyId);
     List<DermatologistVacationRequest> getDermatologistVacationRequestsByPharmacyIdAndStatus(Long pharmacyId, VacationRequestStatus status);
     List<DermatologistVacationRequest> getDermatologistVacationRequestsByPharmacyId(Long pharmacyId);
     DermatologistVacationRequest getDermatologistVacationRequestById(Long id);

@@ -28,8 +28,12 @@ public class DermatologistVacationRequest {
     private Long dermatologistId;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
+
+    @Column(name = "pharmacy_id", updatable = false, insertable = false)
+    private Long pharmacyId;
 
     @AttributeOverrides({
             @AttributeOverride( name = "start", column = @Column(name = "vacationStart")),
@@ -96,5 +100,13 @@ public class DermatologistVacationRequest {
 
     public void setVacationTime(TimePeriod vacationTime) {
         this.vacationTime = vacationTime;
+    }
+
+    public Long getDermatologistId() {
+        return dermatologistId;
+    }
+
+    public Long getPharmacyId() {
+        return pharmacyId;
     }
 }
