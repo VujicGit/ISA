@@ -1,8 +1,10 @@
 package com.isa.user.service.implementation;
 
 
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.user.domain.Dermatologist;
 
+import com.isa.user.dto.ShiftDto;
 import com.isa.user.repository.DermatologistRepository;
 import com.isa.user.service.interfaces.IDermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,4 +62,6 @@ public class DermatologistService implements IDermatologistService {
         }
         return dermatologistRepository.search(name, surname);
     }
+
+
 }

@@ -4,6 +4,8 @@ import com.isa.appointment.domain.enums.AppointmentStatus;
 import com.isa.appointment.domain.enums.AppointmentType;
 import com.isa.drug.domain.Allergy;
 import com.isa.patient.domain.Therapy;
+import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.user.domain.Patient;
 
 import javax.persistence.*;
 
@@ -33,11 +35,32 @@ public class Appointment {
             @AttributeOverride( name = "start", column = @Column(name = "appointmentStartTime")),
             @AttributeOverride( name = "end", column = @Column(name = "appointmentEndTime"))
     })
-    private TimePeriod appointmentPeriod;
+    private TimePeriod appointmentDuration;
 
-    //TODO Add patient
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 
-    //TODO Add pharmacy
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "pharmacy_id")
+    private Pharmacy pharmacy;
+
+    @Column(name = "pharmacy_id", updatable = false, insertable = false)
+    private Long pharmacyId;
+
+    public Appointment() {
+    }
+
+    public Appointment(Long id, Double cost, AppointmentType type, AppointmentStatus status, Therapy threapy, TimePeriod appointmentPeriod, Patient patient, Pharmacy pharmacy) {
+        this.id = id;
+        this.cost = cost;
+        this.type = type;
+        this.status = status;
+        this.threapy = threapy;
+        this.appointmentDuration = appointmentPeriod;
+        this.patient = patient;
+        this.pharmacy = pharmacy;
+    }
 
     public Long getId() {
         return id;
@@ -74,4 +97,32 @@ public class Appointment {
     public Therapy getThreapy() { return threapy; }
 
     public void setThreapy(Therapy threapy) { this.threapy = threapy; }
+
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public TimePeriod getAppointmentDuration() {
+        return appointmentDuration;
+    }
+
+    public void setAppointmentDuration(TimePeriod appointmentDuration) {
+        this.appointmentDuration = appointmentDuration;
+    }
+
+    public Long getPharmacyId() {
+        return pharmacyId;
+    }
 }
