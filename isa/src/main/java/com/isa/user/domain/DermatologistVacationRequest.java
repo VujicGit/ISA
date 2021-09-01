@@ -20,10 +20,13 @@ public class DermatologistVacationRequest {
     @Column
     private VacationRequestStatus status;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "dermatologist_id")
     private Dermatologist dermatologist;
 
-    // add time period, pharmacy
+    @Column(name = "dermatologist_id", updatable = false, insertable = false)
+    private Long dermatologistId;
+
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     private Pharmacy pharmacy;

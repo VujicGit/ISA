@@ -30,7 +30,7 @@ public class DermatologistVacationRequestController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> process(@RequestBody ProcessVacationRequestDto dto) {
 
-        DermatologistVacationRequest vacationRequest = dermatologistVacationRequestService.process(dto.getId(), dto.getStatus());
+        DermatologistVacationRequest vacationRequest = dermatologistVacationRequestService.process(dto.getId(), dto.getStatus(), dto.getMessage());
 
         if (vacationRequest == null)
             return new ResponseEntity<>(new Error("Vacation request is already processed"), HttpStatus.BAD_REQUEST);
