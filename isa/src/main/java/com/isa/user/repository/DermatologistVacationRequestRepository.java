@@ -1,12 +1,15 @@
 package com.isa.user.repository;
 
+import com.isa.appointment.domain.TimePeriod;
 import com.isa.user.domain.Dermatologist;
 import com.isa.user.domain.DermatologistVacationRequest;
 import com.isa.user.domain.enumeration.VacationRequestStatus;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,4 +33,8 @@ public interface DermatologistVacationRequestRepository extends JpaRepository<De
             "where ph.id = ?1 and lower(d.name) like(lower(?2)) and lower(d.surname) like(lower(?3))")
     List<DermatologistVacationRequest> search(Long pharmacyId, String name, String surname);
 
+    @Query("select v from DermatologistVacationRequest  v " +
+            "where v.pharmacyId = ?2 and v.dermatologistId = ?3 " +
+            "and v.vacationTime.end >= ?1 and v.status = ?4" )
+    List<DermatologistVacationRequest> getFuture(LocalDateTime date, Long pharmacyId, Long dermatologistId, VacationRequestStatus status);
 }

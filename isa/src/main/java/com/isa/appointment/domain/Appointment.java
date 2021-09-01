@@ -2,12 +2,15 @@ package com.isa.appointment.domain;
 
 import com.isa.appointment.domain.enums.AppointmentStatus;
 import com.isa.appointment.domain.enums.AppointmentType;
+import com.isa.appointment.exception.AppointmentException;
 import com.isa.drug.domain.Allergy;
 import com.isa.patient.domain.Therapy;
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.user.domain.Patient;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
@@ -52,6 +55,7 @@ public class Appointment {
     }
 
     public Appointment(Long id, Double cost, AppointmentType type, AppointmentStatus status, Therapy threapy, TimePeriod appointmentPeriod, Patient patient, Pharmacy pharmacy) {
+        validateDuration(appointmentDuration);
         this.id = id;
         this.cost = cost;
         this.type = type;
@@ -62,6 +66,10 @@ public class Appointment {
         this.pharmacy = pharmacy;
     }
 
+    private void validateDuration(TimePeriod duration) {
+        boolean isValid = duration.getStart().isAfter(LocalDateTime.now()) && duration.getEnd().isAfter(LocalDateTime.now());
+        if(!isValid) throw new AppointmentException("Appointment must be in future");
+    }
     public Long getId() {
         return id;
     }
@@ -119,6 +127,7 @@ public class Appointment {
     }
 
     public void setAppointmentDuration(TimePeriod appointmentDuration) {
+        validateDuration(appointmentDuration);
         this.appointmentDuration = appointmentDuration;
     }
 
