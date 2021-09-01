@@ -20,5 +20,7 @@ export class DermatologistServiceService {
     return this.http.get<SearchDermatologist[]>(`${environment.baseUrl}/${environment.dermatologist}`);
   }
 
+  
+
 
 }

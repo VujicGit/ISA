@@ -15,6 +15,7 @@ import { CreateOrderComponent } from './components/order/create-order/create-ord
 import { PricelistComponent } from './components/pricelist/pricelist.component';
 import { Order } from './model/order/order';
 import { OrdersComponent } from './components/order/orders/orders.component';
+import { AddDermatologistComponent } from './components/dermatologists/add-dermatologist/add-dermatologist.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
   {
     path: 'orders',
     component: OrdersComponent
+  },
+  {
+    path: 'addDermatologist',
+    component: AddDermatologistComponent
   }
 ];
 

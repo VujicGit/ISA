@@ -12,7 +12,7 @@ public interface DermatologistRepository extends JpaRepository<Dermatologist, Lo
     @Query(value = "select d from Dermatologist d join fetch d.address")
     List<Dermatologist> findAllWithAddress();
 
-    @Query(value = "select d from Dermatologist d join fetch d.pharmacies")
+    @Query(value = "select d from Dermatologist d left join fetch d.pharmacies")
     List<Dermatologist> findAllWithPharmacies();
 
     @Query(value = "select d from Dermatologist d join fetch d.pharmacies p where lower(d.name) like ?1 and lower(d.surname) like ?2")
@@ -31,5 +31,10 @@ public interface DermatologistRepository extends JpaRepository<Dermatologist, Lo
             "left join fetch d.pharmacies p " +
             "where d.id = ?1")
     Optional<Dermatologist> findByIdWithPharmacies(Long id);
+
+    @Query("select distinct d from Dermatologist d " +
+            "left join fetch d.pharmacies p " +
+            "where p.id = ?1")
+    List<Dermatologist> findAllByPharmacyId(Long pharmacyId);
 }
 

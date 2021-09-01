@@ -12,5 +12,6 @@ public interface IDermatologistService {
     List<Dermatologist> findAllWithPharmacies();
     List<Dermatologist> filter(String name, String surname, Long id, double minGrade, double maxGrade);
     List<Dermatologist> search(String name, String surname);
+    List<Dermatologist> findAllByPharmacyId(Long pharmacyId);
 
 }
