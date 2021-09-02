@@ -1,13 +1,13 @@
 export class PredefinedExamination {
-    dermatologistId: String;
+    dermatologistId: number;
     price: number;
-    startDate: Date;
-    endDate: Date;
+    start: Date;
+    end: Date;
 
-    constructor(dermatologistId: String, price: number, startDate: Date, endDate: Date) {
+    constructor(dermatologistId: number, price: number, startDate: Date, endDate: Date) {
         this.dermatologistId = dermatologistId;
         this.price = price;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.start = startDate;
+        this.end = endDate;
     }
 }

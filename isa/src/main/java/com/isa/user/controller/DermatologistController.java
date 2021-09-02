@@ -36,6 +36,7 @@ public class DermatologistController {
     }
 
 
+
     @GetMapping(value = "/pharmacyId/{pharmacyId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAllForPharmacy(@PathVariable Long pharmacyId) {
 
@@ -53,6 +54,14 @@ public class DermatologistController {
     public ResponseEntity<?> search(@PathVariable String name, @PathVariable String surname) {
         List<SearchDermatologistDto> dermatologistDtos = DermatologistMapper.mapDermatologistsToDermatologistDtos(dermatologistService.search(name, surname));
         return new ResponseEntity<>(dermatologistDtos, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/admin", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> findAllByAdmin(@AuthenticationPrincipal PharmacyAdministrator pharmacyAdmin) {
+        Long pharmacyId = pharmacyAdmin.getPharmacyId();
+        List<Dermatologist> dermatologists = dermatologistService.findAllByPharmacyId(pharmacyId);
+        List<SearchDermatologistDto> dtos = DermatologistMapper.mapDermatologistsToDermatologistDtos(dermatologists);
+        return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
 }
