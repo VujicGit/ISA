@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
@@ -24,5 +25,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "left join fetch o.pharmacyAdministrator " +
             "where o.id = ?1")
     Order findByIdWithPharmacyAdministrator(Long orderId);
+
+    @Query(value = "select distinct o from Order o left join fetch o.orderedDrug " +
+            "where o.id =?1")
+    Optional<Order> findByIdWithDrugs(Long id);
 
 }

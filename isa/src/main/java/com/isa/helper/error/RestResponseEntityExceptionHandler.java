@@ -1,6 +1,7 @@
 package com.isa.helper.error;
 
 import com.isa.appointment.exception.ExaminationException;
+import com.isa.helper.http.Message;
 import com.isa.pharmacy.exception.PriceTimeException;
 import com.isa.user.exception.VacationRequestException;
 import com.isa.supplier.exception.AdminException;
@@ -49,55 +50,55 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = {PriceTimeException.class})
-    protected ResponseEntity<?> handle4(PriceTimeException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {VacationRequestException.class})
-    protected ResponseEntity<?> handle5(VacationRequestException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {InvalidCredentialsException.class})
-    protected ResponseEntity<?> handle5(InvalidCredentialsException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.UNAUTHORIZED);
-    }
-
-    @ExceptionHandler(value = {OrderNotFoundException.class})
-    protected ResponseEntity<?> handle6(OrderNotFoundException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {AdminException.class})
-    protected ResponseEntity<?> handle7(AdminException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {ShiftAlreadyExistsException.class})
-    protected ResponseEntity<?> handle8(ShiftAlreadyExistsException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {ShiftsOverlappingException.class})
-    protected ResponseEntity<?> handle9(ShiftsOverlappingException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
+//    @ExceptionHandler(value = {PriceTimeException.class})
+//    protected ResponseEntity<?> handle4(PriceTimeException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler(value = {VacationRequestException.class})
+//    protected ResponseEntity<?> handle5(VacationRequestException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler(value = {InvalidCredentialsException.class})
+//    protected ResponseEntity<?> handle5(InvalidCredentialsException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.UNAUTHORIZED);
+//    }
+//
+//    @ExceptionHandler(value = {OrderNotFoundException.class})
+//    protected ResponseEntity<?> handle6(OrderNotFoundException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler(value = {AdminException.class})
+//    protected ResponseEntity<?> handle7(AdminException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler(value = {ShiftAlreadyExistsException.class})
+//    protected ResponseEntity<?> handle8(ShiftAlreadyExistsException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler(value = {ShiftsOverlappingException.class})
+//    protected ResponseEntity<?> handle9(ShiftsOverlappingException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
+//
     @ExceptionHandler(value = {RuntimeException.class})
-    protected ResponseEntity<?> handle10(RuntimeException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+    protected ResponseEntity<?> handleRuntimeException(RuntimeException ex) {
+        return new ResponseEntity<>(new Message(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(value = {AuthenticationException.class})
-    protected ResponseEntity<?> handleAuthenticationException(AuthenticationException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(value = {ExaminationException.class})
-    protected ResponseEntity<?> handleExaminationException(ExaminationException ex) {
-        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
+//
+//    @ExceptionHandler(value = {AuthenticationException.class})
+//    protected ResponseEntity<?> handleAuthenticationException(AuthenticationException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
+//
+//    @ExceptionHandler(value = {ExaminationException.class})
+//    protected ResponseEntity<?> handleExaminationException(ExaminationException ex) {
+//        return new ResponseEntity<>(new Error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
 
 
 }

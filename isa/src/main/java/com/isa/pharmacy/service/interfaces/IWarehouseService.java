@@ -11,4 +11,6 @@ public interface IWarehouseService {
     Warehouse save(Warehouse warehouse);
     Warehouse deleteItem(Long pharmacyId, String drugCode);
     List<Item> search(Long pharmacyId, String drugCode);
+    void updateQuantity(Long pharmacyId, Long drugId, int quantity);
+
 }

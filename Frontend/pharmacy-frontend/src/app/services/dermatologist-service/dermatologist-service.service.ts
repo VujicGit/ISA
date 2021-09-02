@@ -20,5 +20,11 @@ export class DermatologistServiceService {
     return this.http.get<SearchDermatologist[]>(`${environment.baseUrl}/${environment.dermatologist}`);
   }
 
+  findAllForAdmin() : Observable<SearchDermatologist[]> {
+    return this.http.get<SearchDermatologist[]>(`${environment.baseUrl}/${environment.dermatologist}/${environment.admin}`);
+  }
+
+  
+
 
 }

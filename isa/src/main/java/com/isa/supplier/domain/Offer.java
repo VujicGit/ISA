@@ -1,6 +1,7 @@
 package com.isa.supplier.domain;
 
 import com.isa.supplier.domain.enumeration.OfferStatus;
+import com.isa.supplier.exception.OfferAcceptedException;
 import com.isa.user.domain.Supplier;
 
 import javax.persistence.*;
@@ -52,12 +53,17 @@ public class Offer {
     }
 
     public void acceptOffer(Long offerId, Long pharmacyAdminId) {
+        if(isAccepted()) throw new OfferAcceptedException("Offer is already accepted");
         if(getId().equals(offerId)) {
             setStatus(OfferStatus.ACCEPTED);
         }
         else {
             setStatus(OfferStatus.REJECTED);
         }
+    }
+
+    private boolean isAccepted() {
+        return this.getStatus() == OfferStatus.ACCEPTED;
     }
 
 

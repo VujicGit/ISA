@@ -17,7 +17,11 @@ export const environment = {
   basic: 'basic',
   order: 'order',
   pricelist: 'pricelist',
-  offer: 'offer'
+  offer: 'offer',
+  employment: 'employment',
+  examination: 'examination',
+  define: 'define',
+  admin: 'admin'
 };
 
 /*

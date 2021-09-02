@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
@@ -13,6 +14,6 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
     @Query(value = "select distinct o from Offer o " +
             "left join fetch o.supplier " +
             "where o.orderId = ?1")
-    List<Offer> findAllByOrderIdWithSupplier(Long orderId);
+    Optional<List<Offer>> findAllByOrderIdWithSupplier(Long orderId);
 
 }

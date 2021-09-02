@@ -8,7 +8,7 @@ import { PharmacyServiceService } from 'src/app/services/pharmacy-service/pharma
 
 
 const ELEMENT_DATA: SearchDermatologist[] = [
-  {name: "Pera", surname: "Peric", grade: 8.0, pharmacies:[]},
+  {name: "Pera", surname: "Peric", grade: 8.0, pharmacies:[], id: 1},
 ];
 
 @Component({

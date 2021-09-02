@@ -34,6 +34,8 @@ import { PricelistComponent } from './components/pricelist/pricelist.component';
 import { OrdersComponent } from './components/order/orders/orders.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { OffersDialogComponent } from './components/order/orders/offers-dialog/offers-dialog.component';
+import { AddDermatologistComponent } from './components/dermatologists/add-dermatologist/add-dermatologist.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { OffersDialogComponent } from './components/order/orders/offers-dialog/o
     CreateOrderComponent,
     PricelistComponent,
     OrdersComponent,
-    OffersDialogComponent
+    OffersDialogComponent,
+    AddDermatologistComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { OffersDialogComponent } from './components/order/orders/offers-dialog/o
     MatTableModule,
     MatExpansionModule,
     MatRadioModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [
     MatDatepickerModule,
