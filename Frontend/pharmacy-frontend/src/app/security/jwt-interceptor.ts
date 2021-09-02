@@ -19,8 +19,9 @@ export class JwtInterceptor implements HttpInterceptor {
             })
         }
 
+
         req = req.clone({
-            withCredentials:true
+            withCredentials:false
         });
         
         return next.handle(req);

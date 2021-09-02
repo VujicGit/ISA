@@ -2,19 +2,13 @@ insert into country (name) values ('Srbija');
 
 insert into city (name, zip_code, country_id) values ('Novi Sad', '21000', 1);
 
-insert into location (latitude, longitude) values (45.267136, 19.833549);
-insert into location (latitude, longitude) values (45.24915928867009, 19.84284031690104);
-insert into location (latitude, longitude) values (45.24993937456046, 19.84684437097689);
-insert into location (latitude, longitude) values (45.250312839697166, 19.84671996728179);
-insert into location (latitude, longitude) values (45.816407202210186, 19.640509353806817);
-insert into location (latitude, longitude) values (45.25038975236708, 19.84697265563544);
 
-insert into address (number, street, city_id, location_id) values ('8', 'Maksima Gorkog', 1, 1);
-insert into address (number, street, city_id, location_id) values ('9', 'Maksima Gorkog', 1, 2);
-insert into address (number, street, city_id, location_id) values ('10', 'Maksima Gorkog', 1, 3);
-insert into address (number, street, city_id, location_id) values ('11', 'Maksima Gorkog', 1, 4);
-insert into address (number, street, city_id, location_id) values ('12', 'Maksima Gorkog', 1, 5);
-insert into address (number, street, city_id, location_id) values ('13', 'Maksima Gorkog', 1, 6);
+insert into address (number, street, city_id, latitude, longitude) values ('8', 'Maksima Gorkog', 1, 45.267136, 19.833549);
+insert into address (number, street, city_id, latitude, longitude) values ('9', 'Maksima Gorkog', 1, 45.24915928867009, 19.84284031690104);
+insert into address (number, street, city_id, latitude, longitude) values ('10', 'Maksima Gorkog', 1, 45.24993937456046, 19.84684437097689);
+insert into address (number, street, city_id, latitude, longitude) values ('11', 'Maksima Gorkog', 1, 45.250312839697166, 19.84671996728179);
+insert into address (number, street, city_id, latitude, longitude) values ('12', 'Maksima Gorkog', 1, 45.816407202210186, 19.640509353806817);
+insert into address (number, street, city_id, latitude, longitude) values ('13', 'Maksima Gorkog', 1, 45.25038975236708, 19.84697265563544);
 
 insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
 

@@ -36,7 +36,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { OffersDialogComponent } from './components/order/orders/offers-dialog/offers-dialog.component';
 import { AddDermatologistComponent } from './components/dermatologists/add-dermatologist/add-dermatologist.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './components/map/map.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PricelistComponent,
     OrdersComponent,
     OffersDialogComponent,
-    AddDermatologistComponent
+    AddDermatologistComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatExpansionModule,
     MatRadioModule,
     ToastrModule.forRoot(),
-    NgbModule
+    NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyDEmGJYq8-CAS15re0tM_wwF9JOaZwHY3g"
+    })
   ],
   providers: [
     MatDatepickerModule,

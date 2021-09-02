@@ -14,10 +14,13 @@ public class Address {
     @Column
     private String number;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private City city;
 
-    @OneToOne
+    @AttributeOverrides({
+            @AttributeOverride( name = "latitude", column = @Column(name = "latitude")),
+            @AttributeOverride( name = "longitude", column = @Column(name = "longitude"))
+    })
     private Location location;
 
     public Address() {}

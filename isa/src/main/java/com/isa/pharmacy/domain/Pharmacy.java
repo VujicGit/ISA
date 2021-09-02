@@ -34,7 +34,7 @@ public class Pharmacy {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pharmacy")
     private List<Pharmacist> pharmacists;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private Address address;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
