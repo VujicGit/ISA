@@ -44,7 +44,11 @@ public class Order {
     private List<Offer> offers;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
+
+    @Column(name = "pharmacy_id", updatable = false, insertable = false)
+    private Long pharmacyId;
 
     public Order() {}
 
@@ -120,5 +124,9 @@ public class Order {
 
     public void setPharmacy(Pharmacy pharmacy) {
         this.pharmacy = pharmacy;
+    }
+
+    public Long getPharmacyId() {
+        return pharmacyId;
     }
 }

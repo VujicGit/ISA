@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,11 +42,11 @@ public class OfferController {
         return new ResponseEntity<>(offerService.createOffer(dto).getId(), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ROLE_PHARMACY_ADMIN')")
     @PutMapping(value = "/accept/{offerId}/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> acceptOffer(@PathVariable Long offerId, @PathVariable Long orderId) {
+    public ResponseEntity<?> acceptOffer(@PathVariable Long offerId, @PathVariable Long orderId, @AuthenticationPrincipal PharmacyAdministrator pharmacyAdmin) {
 
-        PharmacyAdministrator pharmacyAdministrator = (PharmacyAdministrator) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Long pharmacyAdminId = pharmacyAdministrator.getId();
+        Long pharmacyAdminId = pharmacyAdmin.getId();
         offerService.acceptOffer(pharmacyAdminId, offerId, orderId);
         return new ResponseEntity<>(new Message("Success"), HttpStatus.OK);
     }
