@@ -18,20 +18,20 @@ insert into address (number, street, city_id, location_id) values ('13', 'Maksim
 
 insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
 
-insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('bojanvjc1@gmail.com', 0, '25029920098', 'Marko', 'markic', false, '065/322322', 3, 'Markovic', false, 1);
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id, first_time_logged_in)
+    values ('bojanvjc1@gmail.com', 0, '25029920098', 'Marko', 'markic', false, '065/322322', 3, 'Markovic', false, 1, false);
 
-insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('user2@gmail.com', 0, '22039920028', 'Petar', 'pera', false, '065/323232', 2, 'Petrovic', false, 3);
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id, first_time_logged_in)
+    values ('user2@gmail.com', 0, '22039920028', 'Petar', 'pera', false, '065/323232', 2, 'Petrovic', false, 3, false);
 
-insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('user3@gmail.com', 0, '22049910028', 'Isak', '$2a$10$yiJVwyT4eF/UboEM9oPpYOyIou86mFPnVvYC8YtgFGcy76BV9wJQy', false, '065/323212', 1, 'Isakovic', false, 4);
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id, first_time_logged_in)
+    values ('user3@gmail.com', 0, '22049910028', 'Isak', '$2a$10$yiJVwyT4eF/UboEM9oPpYOyIou86mFPnVvYC8YtgFGcy76BV9wJQy', false, '065/323212', 1, 'Isakovic', false, 4, false);
 
-insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('bojanvjc@gmail.com', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5);
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id, first_time_logged_in)
+    values ('bojanvjc@gmail.com', 0, '12029960028', 'Jovan', 'joca', false, '065/313222', 5, 'Jovanovic', false, 5, false);
 
-insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id)
-    values ('bojanvjc1@gmail.com', 0, '12129960328', 'Igor', '$2a$10$VV9ooBhZ4qRowDIOEmjUxuTJdK5rBoWed59p.L92Awp/Bwgbcd54O', false, '065/313222', 4, 'Jovanovic', false, 6);
+insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id, first_time_logged_in)
+    values ('bojanvjc1@gmail.com', 0, '12129960328', 'Igor', '$2a$10$VV9ooBhZ4qRowDIOEmjUxuTJdK5rBoWed59p.L92Awp/Bwgbcd54O', false, '065/313222', 4, 'Jovanovic', false, 6, false);
 
 insert into employee (id) values (1);
 insert into employee (id) values (2);

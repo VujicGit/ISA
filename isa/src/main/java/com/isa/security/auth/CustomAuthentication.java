@@ -6,6 +6,7 @@ import com.isa.user.domain.User;
 import com.isa.user.domain.enumeration.Role;
 import com.isa.user.dto.JwtAuthenticationRequest;
 import com.isa.user.exception.InvalidCredentialsException;
+import com.isa.user.exception.PasswordNotChangedException;
 import com.isa.user.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,14 +37,29 @@ public class CustomAuthentication {
                 authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         User user = (User) authentication.getPrincipal();
+
         String jwt = null;
         if(isPharmacyAdministrator(user)) {
             jwt = authenticatePharmacyAdministrator((PharmacyAdministrator) user);
         }
 
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return new UserTokenState(jwt, TokenExpiresIn(), user.getRole(), user.getId());
+    }
+
+    private void loginFirstTime(User user) {
+        user.setFirstTimeLoggedIn(true);
+        userRepository.save(user);
+    }
+
+    private boolean isPasswordChanged(User user) {
+        return user.isPasswordChanged();
+    }
+
+    private boolean isFirstTimeLoggedIn(User user) {
+        return user.getIsFirstTimeLoggedIn();
     }
 
     private boolean isPharmacyAdministrator(User user) {
@@ -67,6 +83,7 @@ public class CustomAuthentication {
         } else return;
 
         user.setPassword(passwordEncoder.encode(newPassword));
+        user.setPasswordChanged(true);
         userRepository.save(user);
 
     }
