@@ -14,4 +14,8 @@ export class OfferService {
   findAll(orderId: number) : Observable<Offer[]> {
     return this.http.get<Offer[]>(`${environment.baseUrl}/${environment.offer}/orderId/${orderId}`);
   }
+
+  confirmOffer(orderId: number, offerId: number) {
+    return this.http.put(`${environment.baseUrl}/${environment.offer}/${environment.accept}/${orderId}/${offerId}`, null);
+  }
 }

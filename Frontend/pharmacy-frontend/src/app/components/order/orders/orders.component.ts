@@ -64,6 +64,7 @@ export class OrdersComponent implements OnInit {
       minWidth:'35vw',
       height: 'fit-content',
       maxHeight: '50vw',
+      minHeight:'25vw',
       data: orderId,
     })
   }

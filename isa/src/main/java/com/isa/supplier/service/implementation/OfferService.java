@@ -7,6 +7,7 @@ import com.isa.supplier.domain.Offer;
 import com.isa.supplier.domain.Order;
 import com.isa.supplier.domain.OrderedDrug;
 import com.isa.supplier.domain.enumeration.OfferStatus;
+import com.isa.supplier.domain.enumeration.OrderStatus;
 import com.isa.supplier.dto.CreateOfferDto;
 import com.isa.supplier.exception.AdminException;
 import com.isa.supplier.exception.OfferNotFoundException;
@@ -77,7 +78,7 @@ public class OfferService implements IOfferService {
         offers.forEach(o -> o.acceptOffer(offerId, pharmacyAdminId));
 
         Order order = orderRepository.findByIdWithDrugs(orderId).orElseThrow();
-
+        order.setStatus(OrderStatus.ACCEPTED);
         updateQuantities(order);
 
         offerRepository.saveAll(offers);
