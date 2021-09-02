@@ -2,9 +2,11 @@ package com.isa.user.domain;
 
 import com.isa.appointment.domain.TimePeriod;
 import com.isa.pharmacy.domain.Pharmacy;
+import com.isa.user.exception.ShiftDateException;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -40,6 +42,7 @@ public class Shift {
     public Shift() {}
 
     public Shift(TimePeriod duration, Pharmacy pharmacy, Employee employee) {
+        validateDuration(duration);
         this.duration = duration;
         this.pharmacy = pharmacy;
         this.employee = employee;
@@ -74,11 +77,17 @@ public class Shift {
     }
 
     public void setDuration(TimePeriod duration) {
+        validateDuration(duration);
         this.duration = duration;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    private void validateDuration(TimePeriod duration) {
+        boolean isValid = duration.getStart().isAfter(LocalDateTime.now()) && duration.getEnd().isAfter(LocalDateTime.now());
+        if(!isValid) throw new ShiftDateException(duration);
     }
 
     @Override

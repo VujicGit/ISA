@@ -69,7 +69,7 @@ insert into subscription (pharmacy_id) values (1);
 
 insert into subscription_patient (subscription_id, patient_id) values (1, 4);
 
-insert into dermatologist_vacation_request (admin_response, vacation_start, vacation_end, status, dermatologist_id, pharmacy_id) values (null, '2021-08-20T00:00:00', '2021-08-20T00:00:00', 0, 1, 1);
+insert into dermatologist_vacation_request (admin_response, vacation_start, vacation_end, status, dermatologist_id, pharmacy_id) values (null, '2021-08-20T00:00:00', '2021-09-10T00:00:00', 1, 1, 1);
 insert into authority (id, name) values (1, 'ROLE_PHARMACY_ADMIN');
 
 insert into user_authority (user_id, authority_id) values (3, 1);
