@@ -1,6 +1,7 @@
 package com.isa.supplier.controller;
 
 import com.isa.helper.error.ErrorMapper;
+import com.isa.helper.http.Message;
 import com.isa.supplier.domain.Order;
 import com.isa.supplier.domain.enumeration.OrderStatus;
 import com.isa.supplier.dto.CreateOrderDto;
@@ -45,7 +46,7 @@ public class OrderController {
         Long pharmacyId = pharmacyAdministrator.getPharmacyId(); //get pharmacy id from jwt
         Long pharmacyAdministratorId = pharmacyAdministrator.getId(); //get pharmacy administrator from jwt
         Order order = orderService.save(dto, pharmacyId, pharmacyAdministratorId);
-        return new ResponseEntity<>(order.getId(), HttpStatus.CREATED);
+        return new ResponseEntity<>(new Message("Success"), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('ROLE_PHARMACY_ADMIN')")
