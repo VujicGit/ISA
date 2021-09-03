@@ -2,6 +2,7 @@ package com.isa.pharmacy.controller;
 
 import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.pharmacy.dto.PharmacyDto;
+import com.isa.pharmacy.dto.SimplePharmacyDto;
 import com.isa.pharmacy.mapper.PharmacyMapper;
 import com.isa.pharmacy.service.interfaces.IPharmacyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class PharmacyController {
     @GetMapping
     public ResponseEntity<?> findAll() {
         List<Pharmacy> pharmacies = pharmacyService.findAll();
-        List<PharmacyDto> dtos = PharmacyMapper.mapPharmaciesToPharmacyDtos(pharmacies);
+        List<SimplePharmacyDto> dtos = PharmacyMapper.mapPharmaciesToSimplePharmacyDtos(pharmacies);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 

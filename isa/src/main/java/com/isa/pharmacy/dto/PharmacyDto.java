@@ -27,6 +27,7 @@ public class PharmacyDto {
         this.latitude = pharmacy.getAddress().getLocation().getLatitude();
         this.longitude = pharmacy.getAddress().getLocation().getLongitude();
         this.zipCode = pharmacy.getAddress().getCity().getZipCode();
+        this.name = pharmacy.getName();
     }
 
     public PharmacyDto(String description, String name, Double latitude, Double longitude, String city, String country, String address, Long id, String zipCode) {

@@ -22,7 +22,8 @@ export const environment = {
   examination: 'examination',
   define: 'define',
   admin: 'admin',
-  accept: 'accept'
+  accept: 'accept',
+  filter: 'filter'
 };
 
 /*

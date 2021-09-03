@@ -10,7 +10,7 @@ insert into address (number, street, city_id, latitude, longitude) values ('11',
 insert into address (number, street, city_id, latitude, longitude) values ('12', 'Maksima Gorkog', 1, 45.816407202210186, 19.640509353806817);
 insert into address (number, street, city_id, latitude, longitude) values ('13', 'Maksima Gorkog', 1, 45.25038975236708, 19.84697265563544);
 
-insert into pharmacy (description, address_id) values ('Apoteka 1', 2);
+insert into pharmacy (name, description, address_id) values ('Apoteka 1', 'Apoteka 1', 2);
 
 insert into users (email, gender, identification_number, name, password, password_changed, phone, role, surname, verified, address_id, first_time_logged_in)
     values ('bojanvjc1@gmail.com', 0, '25029920098', 'Marko', 'markic', false, '065/322322', 3, 'Markovic', false, 1, false);

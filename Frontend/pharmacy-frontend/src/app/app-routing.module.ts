@@ -46,8 +46,7 @@ const routes: Routes = [
   {
     path: 'dermatologists',
     component: DermatologistsComponent,
-    canActivate: [AuthGuard],
-    data: {roles: [Role.User]}
+    
   },
   {
     path: 'login',
