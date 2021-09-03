@@ -1,14 +1,17 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Filter } from 'src/app/model/filter/filter';
 import { Pharmacy } from 'src/app/model/pharmacy/pharmacy';
+import { SimplePharmacy } from 'src/app/model/pharmacy/simple-pharmacy';
 import { SearchDermatologist } from 'src/app/model/search-dermatologist/search-dermatologist';
+import { Search } from 'src/app/model/search/search';
 import { DermatologistServiceService } from 'src/app/services/dermatologist-service/dermatologist-service.service';
 import { PharmacyServiceService } from 'src/app/services/pharmacy-service/pharmacy-service.service';
 
 
 const ELEMENT_DATA: SearchDermatologist[] = [
-  {name: "Pera", surname: "Peric", grade: 8.0, pharmacies:[]},
+  {name: "Pera", surname: "Peric", grade: 8.0, pharmacies:[], id: 1},
 ];
 
 @Component({
@@ -28,7 +31,8 @@ export class DermatologistsComponent implements OnInit {
   pharmacy: String;
   minGrade: number = 0;
   maxGrade: number = 10;
-  pharmacies: Pharmacy[] = [];
+  pharmacyId: number;
+  pharmacies: SimplePharmacy[] = [];
   constructor(private fb: FormBuilder, private dermatologistService: DermatologistServiceService, private pharmacyService: PharmacyServiceService) { }
 
   displayedColumns: string[] = ['name', 'surname', 'grade'];
@@ -48,6 +52,7 @@ export class DermatologistsComponent implements OnInit {
         Validators.min(0),
         Validators.max(10),
       ]],
+      pharmacy: ''
       
     })
     this.searchDataForm.valueChanges.subscribe(data => {
@@ -55,6 +60,7 @@ export class DermatologistsComponent implements OnInit {
       this.surname = data.surname;
       this.minGrade = data.minGrade;
       this.maxGrade = data.maxGrade;
+      this.pharmacyId = data.pharmacy;
     
     });
 
@@ -64,7 +70,11 @@ export class DermatologistsComponent implements OnInit {
   }
 
   search() {
-    this.dermatologistService.searchDermatologists(this.name, this.surname).subscribe(
+
+    if(this.name === undefined || this.surname === undefined) return;
+
+    let search = new Search(this.name, this.surname);
+    this.dermatologistService.searchDermatologists(search).subscribe(
       data => {
         this.dataSource = data;
       },
@@ -98,6 +108,15 @@ export class DermatologistsComponent implements OnInit {
     )
   }
 
+  filter() {
+    let filter = new Filter(this.name, this.surname, Number(this.minGrade), Number(this.maxGrade), this.pharmacyId);
+    this.dermatologistService.filterDermatologist(filter).subscribe(
+      data => {
+        this.dataSource = data;
+      }
+    )
+    console.log(filter);
+  }
   isAdmin() : boolean {
     return false;
   }

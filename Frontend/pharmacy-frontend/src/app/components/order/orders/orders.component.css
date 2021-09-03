@@ -1,0 +1,30 @@
+.container {
+    display: block;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    margin-right: 20px;
+}
+
+.radio-button {
+    margin-right: 20px;
+}
+
+
+table {
+    width: 50vw;
+    margin-top: 20px;
+}
+
+

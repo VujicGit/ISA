@@ -7,7 +7,7 @@
 
                 <mat-select formControlName="dermatologistId">
                     <mat-option *ngFor="let option of options" [value]="option.id">
-                        {{option.name}}
+                        {{option.name}} {{option.surname}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -28,13 +28,13 @@
         </div>
 
         <div class="row">
+            <mat-label>Enter start time</mat-label>
+            <ngb-timepicker [(ngModel)]="start" [spinners] = "false" formControlName="examinationStart"></ngb-timepicker>
+        </div>
+
+        <div class="row">
             <mat-form-field class="form-field">
-                <mat-label>Select time</mat-label>
-                <mat-select formControlName="time">
-                    <mat-option *ngFor="let period of periods" [value]="period">
-                        {{period.start.hours + ':' + period.start.minutes}} - {{period.end.hours + ':' + period.end.minutes}}
-                    </mat-option>
-                </mat-select>
+                <input matInput placeholder="Enter duration (minutes)*" formControlName="duration">
             </mat-form-field>
         </div>
 

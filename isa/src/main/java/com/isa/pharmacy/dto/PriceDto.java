@@ -3,7 +3,6 @@ package com.isa.pharmacy.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.pharmacy.domain.Price;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class PriceDto {

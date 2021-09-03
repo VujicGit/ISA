@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 
@@ -47,6 +48,10 @@ public class User implements UserDetails {
     @Column
     private boolean passwordChanged;
 
+    @Column
+    @NotNull
+    private boolean firstTimeLoggedIn;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = {})
     private Address address;
 
@@ -73,6 +78,7 @@ public class User implements UserDetails {
         this.role = role;
         this.passwordChanged = passwordChanged;
         this.address = address;
+        this.firstTimeLoggedIn = false;
     }
 
     public Long getId() {
@@ -201,5 +207,11 @@ public class User implements UserDetails {
         this.address = address;
     }
 
+    public boolean getIsFirstTimeLoggedIn() {
+        return firstTimeLoggedIn;
+    }
 
+    public void setFirstTimeLoggedIn(boolean firstTimeLoggedIn) {
+        this.firstTimeLoggedIn = firstTimeLoggedIn;
+    }
 }

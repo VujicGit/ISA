@@ -1,8 +1,10 @@
 package com.isa.pharmacy.domain;
 
 import com.isa.appointment.domain.Appointment;
+import com.isa.appointment.domain.TimePeriod;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -17,6 +19,13 @@ public class Pricelist {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Pharmacy pharmacy;
+
+    @AttributeOverrides({
+            @AttributeOverride( name = "start", column = @Column(name = "vacationStart")),
+            @AttributeOverride( name = "end", column = @Column(name = "vacationEnd"))
+    })
+    @NotNull(message = "Vacation tim period can not be null")
+    private TimePeriod priceTime;
 
     public Pricelist(){}
 

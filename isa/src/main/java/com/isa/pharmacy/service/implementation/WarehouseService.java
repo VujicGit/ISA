@@ -1,11 +1,13 @@
 package com.isa.pharmacy.service.implementation;
 
+import com.isa.drug.domain.Drug;
 import com.isa.pharmacy.domain.Item;
 import com.isa.pharmacy.domain.Warehouse;
 import com.isa.pharmacy.repository.WarehouseRepository;
 import com.isa.pharmacy.service.interfaces.IWarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -52,5 +54,20 @@ public class WarehouseService implements IWarehouseService {
     public List<Item> search(Long pharmacyId, String drugCode) {
         Warehouse warehouse = warehouseRepository.findByPharmacyId(pharmacyId);
         return warehouse.getItems().stream().filter(item -> item.getDrug().getCode().equals(drugCode)).collect(Collectors.toList());
+    }
+
+    @Transactional
+    @Override
+    public void updateQuantity(Long pharmacyId, Long drugId, int quantity) {
+        Warehouse warehouse = warehouseRepository.findByPharmacyIdWithDrugs(pharmacyId).orElseThrow();
+
+        List<Item> items = warehouse.getItems();
+
+        Item item = items.stream().filter(i -> i.getDrug().getId().equals(drugId)).findFirst().orElseThrow();
+        item.setQuantity(item.getQuantity() + quantity);
+
+        warehouse.setItems(items);
+
+        warehouseRepository.save(warehouse);
     }
 }

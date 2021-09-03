@@ -14,4 +14,12 @@ export class PharmacyServiceService {
   findAll() : Observable<Pharmacy[]> {
     return this.http.get<Pharmacy[]>(`${environment.baseUrl}/${environment.pharmacy}`);
   }
+
+  findById(id: number) : Observable<Pharmacy> {
+    return this.http.get<Pharmacy>(`${environment.baseUrl}/${environment.pharmacy}/${id}`);
+  }
+
+  update(pharmacy: Pharmacy) {
+    return this.http.put(`${environment.baseUrl}/${environment.pharmacy}`, pharmacy);
+  }
 }

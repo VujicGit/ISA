@@ -1,5 +1,6 @@
 package com.isa.supplier.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.isa.supplier.domain.Order;
 import com.isa.supplier.domain.enumeration.OrderStatus;
 import org.apache.tomcat.jni.Local;
@@ -13,9 +14,12 @@ public class OrderDto {
 
     private List<OrderedDrugDto> orderedDrugs;
     private String createdBy;
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate createdAt;
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private LocalDate dueDate;
     private OrderStatus status;
+    private Long id;
 
     public OrderDto() {
     }
@@ -26,14 +30,16 @@ public class OrderDto {
         this.dueDate = order.getDueDate();
         this.status = order.getStatus();
         this.orderedDrugs = order.getOrderedDrug().stream().map(OrderedDrugDto::new).collect(Collectors.toList());
+        this.id = order.getId();
     }
 
-    public OrderDto(List<OrderedDrugDto> orderedDrugs, String createdBy, LocalDate createdAt, LocalDate dueDate, OrderStatus status) {
+    public OrderDto(List<OrderedDrugDto> orderedDrugs, String createdBy, LocalDate createdAt, LocalDate dueDate, OrderStatus status, Long id) {
         this.orderedDrugs = orderedDrugs;
         this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.dueDate = dueDate;
         this.status = status;
+        this.id = id;
     }
 
     public List<OrderedDrugDto> getOrderedDrugs() {
@@ -56,6 +62,10 @@ public class OrderDto {
         return status;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setOrderedDrugs(List<OrderedDrugDto> orderedDrugs) {
         this.orderedDrugs = orderedDrugs;
     }
@@ -75,4 +85,9 @@ public class OrderDto {
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
+

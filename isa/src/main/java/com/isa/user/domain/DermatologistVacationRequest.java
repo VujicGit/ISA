@@ -1,8 +1,11 @@
 package com.isa.user.domain;
 
+import com.isa.appointment.domain.TimePeriod;
+import com.isa.pharmacy.domain.Pharmacy;
 import com.isa.user.domain.enumeration.VacationRequestStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -12,28 +15,43 @@ public class DermatologistVacationRequest {
     private Long id;
 
     @Column
-    private Date date;
-
-    @Column
     private String adminResponse;
 
     @Column
     private VacationRequestStatus status;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "dermatologist_id")
     private Dermatologist dermatologist;
 
-    // add time period, pharmacy
+    @Column(name = "dermatologist_id", updatable = false, insertable = false)
+    private Long dermatologistId;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "pharmacy_id")
+    private Pharmacy pharmacy;
+
+    @Column(name = "pharmacy_id", updatable = false, insertable = false)
+    private Long pharmacyId;
+
+    @AttributeOverrides({
+            @AttributeOverride( name = "start", column = @Column(name = "vacationStart")),
+            @AttributeOverride( name = "end", column = @Column(name = "vacationEnd"))
+    })
+    @NotNull(message = "Vacation period can not be null")
+    private TimePeriod vacationTime;
 
 
     public DermatologistVacationRequest() {}
 
-    public DermatologistVacationRequest(Long id, Date date, String adminResponse, VacationRequestStatus status, Dermatologist dermatologist) {
+    public DermatologistVacationRequest(Long id, String adminResponse, VacationRequestStatus status, Dermatologist dermatologist, Pharmacy pharmacy, TimePeriod vacationTime) {
         this.id = id;
-        this.date = date;
         this.adminResponse = adminResponse;
         this.status = status;
         this.dermatologist = dermatologist;
+        this.pharmacy = pharmacy;
+        this.vacationTime = vacationTime;
     }
 
     public Long getId() {
@@ -42,14 +60,6 @@ public class DermatologistVacationRequest {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getAdminResponse() {
@@ -74,5 +84,29 @@ public class DermatologistVacationRequest {
 
     public void setDermatologist(Dermatologist dermatologist) {
         this.dermatologist = dermatologist;
+    }
+
+    public Pharmacy getPharmacy() {
+        return pharmacy;
+    }
+
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
+    }
+
+    public TimePeriod getVacationTime() {
+        return vacationTime;
+    }
+
+    public void setVacationTime(TimePeriod vacationTime) {
+        this.vacationTime = vacationTime;
+    }
+
+    public Long getDermatologistId() {
+        return dermatologistId;
+    }
+
+    public Long getPharmacyId() {
+        return pharmacyId;
     }
 }

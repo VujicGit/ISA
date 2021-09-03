@@ -16,7 +16,14 @@ export const environment = {
   drug: 'drug',
   basic: 'basic',
   order: 'order',
-  pricelist: 'pricelist'
+  pricelist: 'pricelist',
+  offer: 'offer',
+  employment: 'employment',
+  examination: 'examination',
+  define: 'define',
+  admin: 'admin',
+  accept: 'accept',
+  filter: 'filter'
 };
 
 /*

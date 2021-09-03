@@ -12,6 +12,10 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version()
+    @Column(name = "version", columnDefinition = "integer DEFAULT 1", nullable = false)
+    private Long version;
+
     @Column
     private Integer quantity;
 

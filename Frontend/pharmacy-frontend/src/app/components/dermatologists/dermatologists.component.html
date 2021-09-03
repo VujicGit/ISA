@@ -45,18 +45,18 @@
             <div class="col" *ngIf="!isAdmin()">
               <mat-form-field appearance="fill">
                 <mat-label>Pharmacies</mat-label>
-                <mat-select [value]="-1">
+                <mat-select [value]="-1" formControlName="pharmacy">
                   <mat-option value="-1" (click)="getPharmacy(-1)">
                     Select pharmacy...
                   </mat-option>
-                  <mat-option *ngFor="let pharmacy of pharmacies" [value]="pharmacy.id" (click)="getPharmacy(pharmacy.id)">
-                    {{pharmacy.description}}
+                  <mat-option *ngFor="let pharmacy of pharmacies" [value]="pharmacy.id" (click)="getPharmacy(pharmacy.id)" >
+                    {{pharmacy.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div class="col">
-              <button mat-raised-button color="primary" (click)="search()">Filter</button>
+              <button mat-raised-button color="primary" (click)="filter()">Filter</button>
             </div>
           </div>
 

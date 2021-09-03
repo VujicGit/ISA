@@ -21,7 +21,6 @@ export class StateInputComponent implements OnInit {
   states: State[];
 
   constructor(private stateService : StateServiceService) { 
-    console.log("Usao u constructor")
     this.stateService.getStates().subscribe(
       success => {
         this.states = success;

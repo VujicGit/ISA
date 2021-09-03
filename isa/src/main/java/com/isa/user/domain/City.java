@@ -14,7 +14,7 @@ public class City {
     @Column
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     private Country country;
 
     public City() {}

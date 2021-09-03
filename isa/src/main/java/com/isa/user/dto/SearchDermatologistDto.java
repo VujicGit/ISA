@@ -7,16 +7,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SearchDermatologistDto {
+    private Long id;
     private String name;
     private String surname;
     private List<String> pharmacies;
     private Double grade;
 
-    public SearchDermatologistDto(String name, String surname, List<String> pharmacies, Double grade) {
+    public SearchDermatologistDto(String name, String surname, List<String> pharmacies, Double grade, Long id) {
         this.name = name;
         this.surname = surname;
         this.pharmacies = pharmacies;
         this.grade = grade;
+        this.id = id;
     }
 
     public SearchDermatologistDto(Dermatologist dermatologist) {
@@ -24,6 +26,7 @@ public class SearchDermatologistDto {
         this.surname = dermatologist.getSurname();
         this.pharmacies = dermatologist.getPharmacies().stream().map(Pharmacy::getDescription).collect(Collectors.toList());
         this.grade = dermatologist.getGrade();
+        this.id = dermatologist.getId();
     }
 
     public String getName() {
@@ -56,5 +59,13 @@ public class SearchDermatologistDto {
 
     public void setGrade(Double grade) {
         this.grade = grade;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

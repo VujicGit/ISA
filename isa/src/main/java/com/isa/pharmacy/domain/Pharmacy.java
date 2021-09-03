@@ -4,11 +4,13 @@ package com.isa.pharmacy.domain;
 import com.isa.user.domain.Address;
 import com.isa.user.domain.Dermatologist;
 import com.isa.user.domain.Pharmacist;
+import com.isa.user.domain.Shift;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Pharmacy {
@@ -18,11 +20,14 @@ public class Pharmacy {
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(
-            name = "pharmacys_dermatolostist",
+            name = "dermatologist_pharmacies",
             joinColumns = @JoinColumn(name = "pharmacy_id"),
             inverseJoinColumns = @JoinColumn(name = "dermatologist_id")
     )
@@ -32,7 +37,7 @@ public class Pharmacy {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pharmacy")
     private List<Pharmacist> pharmacists;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private Address address;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -41,10 +46,15 @@ public class Pharmacy {
     @OneToOne(fetch = FetchType.LAZY)
     private Pricelist priceList;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = {})
+    @JoinColumn(name = "pharmacy_id")
+    private List<Shift> shifts;
 
-    public Pharmacy(Long id, String description) {
+
+    public Pharmacy(Long id, String description, String name) {
         this.id = id;
         this.description = description;
+        this.name = name;
     }
 
     public Pharmacy() {
@@ -99,7 +109,22 @@ public class Pharmacy {
         this.priceList = priceList;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        Pharmacy pharmacy = (Pharmacy) o;
+        return Objects.equals(id, pharmacy.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

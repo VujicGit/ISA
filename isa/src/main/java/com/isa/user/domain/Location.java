@@ -2,11 +2,9 @@ package com.isa.user.domain;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class Location {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
 
     @Column
     private double latitude;
@@ -16,19 +14,13 @@ public class Location {
 
     public Location() {}
 
-    public Location(Long id, double latitude, double longitude) {
-        this.id = id;
+    public Location(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public double getLatitude() {
         return latitude;
