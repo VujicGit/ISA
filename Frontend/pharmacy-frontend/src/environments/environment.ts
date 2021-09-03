@@ -21,7 +21,9 @@ export const environment = {
   employment: 'employment',
   examination: 'examination',
   define: 'define',
-  admin: 'admin'
+  admin: 'admin',
+  accept: 'accept',
+  filter: 'filter'
 };
 
 /*

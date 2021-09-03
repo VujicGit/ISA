@@ -20,6 +20,9 @@ public class Pharmacy {
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
     private String description;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -34,7 +37,7 @@ public class Pharmacy {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pharmacy")
     private List<Pharmacist> pharmacists;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     private Address address;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -48,9 +51,10 @@ public class Pharmacy {
     private List<Shift> shifts;
 
 
-    public Pharmacy(Long id, String description) {
+    public Pharmacy(Long id, String description, String name) {
         this.id = id;
         this.description = description;
+        this.name = name;
     }
 
     public Pharmacy() {
@@ -103,6 +107,14 @@ public class Pharmacy {
 
     public void setPriceList(Pricelist priceList) {
         this.priceList = priceList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

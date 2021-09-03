@@ -2,7 +2,9 @@ package com.isa.user.controller;
 
 import com.isa.user.domain.Dermatologist;
 import com.isa.user.domain.PharmacyAdministrator;
+import com.isa.user.dto.FilterDto;
 import com.isa.user.dto.SearchDermatologistDto;
+import com.isa.user.dto.SearchDto;
 import com.isa.user.mapper.DermatologistMapper;
 import com.isa.user.service.interfaces.IDermatologistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,15 +46,18 @@ public class DermatologistController {
         return new ResponseEntity<>(dermatologistDtos, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{name}/{surname}/{pharmacyId}/{minGrade}/{maxGrade}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> filter(@PathVariable String name, @PathVariable String surname, @PathVariable Long pharmacyId, @PathVariable Double minGrade, @PathVariable Double maxGrade) {
-        List<SearchDermatologistDto> dermatologistDtos = DermatologistMapper.mapDermatologistsToDermatologistDtos(dermatologistService.filter(name, surname, pharmacyId, minGrade, maxGrade));
+    @PostMapping(value = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> filter(@RequestBody FilterDto dto) {
+        List<Dermatologist> dermatologists = dermatologistService.filter(dto.getName(), dto.getSurname(), dto.getPharmacyId(), dto.getMinGrade(), dto.getMaxGrade());
+        List<SearchDermatologistDto> dermatologistDtos = DermatologistMapper.mapDermatologistsToDermatologistDtos(dermatologists);
         return new ResponseEntity<>(dermatologistDtos, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{name}/{surname}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> search(@PathVariable String name, @PathVariable String surname) {
-        List<SearchDermatologistDto> dermatologistDtos = DermatologistMapper.mapDermatologistsToDermatologistDtos(dermatologistService.search(name, surname));
+
+    @PostMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> search(@RequestBody SearchDto dto) {
+        List<Dermatologist> dermatologists = dermatologistService.search(dto.getName(), dto.getSurname());
+        List<SearchDermatologistDto> dermatologistDtos = DermatologistMapper.mapDermatologistsToDermatologistDtos(dermatologists);
         return new ResponseEntity<>(dermatologistDtos, HttpStatus.OK);
     }
 
